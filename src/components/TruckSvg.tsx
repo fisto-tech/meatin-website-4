@@ -23,7 +23,7 @@ export default function TruckSvg({ isMoving = false }: TruckSvgProps) {
           transform-origin: center;
         }
         .truck-tire.is-moving {
-          animation: rotateTruckWheel 0.8s linear infinite;
+          animation: rotateTruckWheel 2.4s linear infinite;
         }
         @keyframes rotateTruckWheel {
           0% {

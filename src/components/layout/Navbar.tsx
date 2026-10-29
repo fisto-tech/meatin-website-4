@@ -74,20 +74,28 @@ export const Navbar: React.FC = () => {
     return current === target || current.startsWith(`${target}/`);
   };
 
-  // Determine if current page is one of the requested transparent-hero pages
-  // Handles: know-your-meat, product (or products), vlog, and team
-  const isTransparentHeroPage = () => {
+  // Transparent navbar starting state for all pages EXCEPT meet our team (/team)
+  const isTransparentNavbarPage = () => {
+    if (!pathname) return true;
+    const path = pathname.split('?')[0].replace(/\/+$/, '') || '/';
+    return path !== '/team';
+  };
+
+  // Pages where transparent navbar should have dark/black text:
+  // Know Your Meat (/know-your-meat), Franchise (/franchise), Vlog (/vlog)
+  const isDarkTextNavbarPage = () => {
     if (!pathname) return false;
     const path = pathname.split('?')[0].replace(/\/+$/, '') || '/';
     return (
       path === '/know-your-meat' ||
-      path === '/product' ||
-      path === '/products' ||
+      path === '/franchise' ||
       path === '/vlog'
     );
   };
 
-  const isTransparentHero = isTransparentHeroPage();
+  const isTransparentHero = isTransparentNavbarPage();
+  const isTransparentState = !scrolled && isTransparentHero;
+  const isDarkNavbarText = isTransparentState && isDarkTextNavbarPage();
 
   return (
     <>
@@ -110,9 +118,15 @@ export const Navbar: React.FC = () => {
               <Image
                 src="/meatin-logo.webp"
                 alt="MEATiN Logo"
-                width={170}
-                height={60}
-                className="h-10 sm:h-11 lg:h-12 w-auto object-contain"
+                width={200}
+                height={70}
+                className={`w-auto object-contain transition-all duration-300 ease-in-out ${
+                  scrolled
+                    ? 'h-10 sm:h-11 lg:h-12'
+                    : 'h-12 sm:h-14 lg:h-16'
+                } ${
+                  isTransparentState && !isDarkNavbarText ? 'drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]' : ''
+                }`}
                 priority
               />
             </div>
@@ -135,12 +149,30 @@ export const Navbar: React.FC = () => {
                   }}
                   suppressHydrationWarning
                   className={`relative text-xs xl:text-[13px] 2xl:text-sm font-bold font-inter tracking-wider transition-all duration-200 py-1.5 ${
-                    isActive ? 'text-[#C62828]' : 'text-slate-800 hover:text-[#064823]'
+                    isActive
+                      ? isDarkNavbarText
+                        ? 'text-[#C62828]'
+                        : isTransparentState
+                        ? 'text-white [text-shadow:_0_1px_3px_rgba(0,0,0,0.45)]'
+                        : 'text-[#C62828]'
+                      : isDarkNavbarText
+                      ? 'text-black hover:text-[#064823]'
+                      : isTransparentState
+                      ? 'text-white/95 hover:text-white [text-shadow:_0_1px_3px_rgba(0,0,0,0.45)] hover:[text-shadow:_0_1px_6px_rgba(0,0,0,0.65)]'
+                      : 'text-slate-800 hover:text-[#064823]'
                   }`}
                 >
                   {item.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C62828] rounded-full" />
+                    <span
+                      className={`absolute bottom-0 left-0 right-0 h-[2.5px] rounded-full ${
+                        isDarkNavbarText
+                          ? 'bg-[#C62828]'
+                          : isTransparentState
+                          ? 'bg-white shadow-[0_1px_3px_rgba(0,0,0,0.35)]'
+                          : 'bg-[#C62828]'
+                      }`}
+                    />
                   )}
                 </Link>
               );
@@ -161,7 +193,13 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Toggle navigation menu"
-              className="lg:hidden p-2 rounded-lg text-slate-800 hover:bg-slate-100 transition-colors"
+              className={`lg:hidden p-2 rounded-lg transition-colors ${
+                isDarkNavbarText
+                  ? 'text-black hover:bg-black/10'
+                  : isTransparentState
+                  ? 'text-white hover:bg-white/20 drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]'
+                  : 'text-slate-800 hover:bg-slate-100'
+              }`}
             >
               <Menu className="w-6 h-6" />
             </button>

@@ -109,7 +109,7 @@ export default function EcosystemCircle() {
 
     timerRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % ECOSYSTEM_PILLARS.length);
-    }, 5500);
+    }, 3000);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -117,20 +117,19 @@ export default function EcosystemCircle() {
   }, [isHovered, isInView]);
 
   return (
-    <section ref={sectionRef} className="relative w-full bg-[#FBFBF8] py-12 sm:py-16 lg:py-14 overflow-hidden select-none border-y border-[#EAE8E0]">
+    <section ref={sectionRef} className="relative w-full bg-[#FBFBF8] py-12 sm:py-16 lg:py-0 overflow-hidden select-none border-t border-b border-[#EAE8E0]">
       {/* MAIN 2-COLUMN SECTION: Left Docked Visual (stretching to full height) + Right Content */}
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-stretch pr-5 sm:pr-8 lg:pr-12 xl:pr-16">
         
-        {/* LEFT: Single Meat Board Image Filling Height to Match Right Content - 3D Perspective Reveal */}
+        {/* LEFT: Single Meat Board Image Filling Height to Match Right Content */}
         <motion.div
-          initial={{ opacity: 0, x: -70, rotateY: 14, scale: 0.92 }}
-          whileInView={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+          initial={{ opacity: 0, x: -70, scale: 0.96 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1 }}
           viewport={{ once: false, amount: 0.2 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          style={{ perspective: 1200 }}
-          className="lg:col-span-6 xl:col-span-6 w-full pl-5 sm:pl-8 lg:pl-0 flex flex-col"
+          className="lg:col-span-6 xl:col-span-6 w-full p-0 flex flex-col"
         >
-          <div className="relative w-full h-[400px] sm:h-[480px] lg:h-full min-h-[400px] lg:min-h-[620px] rounded-[24px] sm:rounded-[28px] lg:rounded-l-none lg:rounded-r-[36px] xl:rounded-r-[42px] overflow-hidden shadow-[0_20px_50px_rgba(14,71,38,0.12)] border border-slate-200/80 bg-slate-100 group">
+          <div className="relative w-full h-[400px] sm:h-[480px] lg:h-full min-h-[400px] lg:min-h-[620px] rounded-none overflow-hidden shadow-[0_20px_50px_rgba(14,71,38,0.12)] border-r border-b border-slate-200/80 bg-slate-100 group">
             {/* The Single Meat Board Image */}
             <Image
               src="/Product/we-are-meatin-image.webp"
@@ -149,7 +148,7 @@ export default function EcosystemCircle() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: false, amount: 0.15 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 xl:col-span-6 w-full pl-5 sm:pl-8 lg:pl-0 flex flex-col justify-center"
+          className="lg:col-span-6 xl:col-span-6 w-full pl-5 sm:pl-8 lg:pl-0 flex flex-col justify-center lg:py-10"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

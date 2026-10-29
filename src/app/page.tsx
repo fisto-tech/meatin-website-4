@@ -95,47 +95,27 @@ export default function HomePage() {
 
 
   const [isTruckMoving, setIsTruckMoving] = React.useState(false);
-  const stopTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
-    const triggerMove = (duration = 400) => {
-      setIsTruckMoving(true);
-      if (stopTimeoutRef.current) clearTimeout(stopTimeoutRef.current);
-      stopTimeoutRef.current = setTimeout(() => {
-        setIsTruckMoving(false);
-      }, duration);
+    let animId: number;
+    let prevVal: number | null = null;
+
+    const checkMovement = () => {
+      const rawVal = smoothTruckX.get();
+      const currentVal = typeof rawVal === "number" ? rawVal : parseFloat(rawVal) || 0;
+      if (prevVal !== null) {
+        // Truck is moving only if its interpolated x position is actively changing
+        const diff = Math.abs(currentVal - prevVal);
+        setIsTruckMoving(diff > 0.005);
+      }
+      prevVal = currentVal;
+      animId = requestAnimationFrame(checkMovement);
     };
 
-    let lastY = typeof window !== "undefined" ? window.scrollY : 0;
-
-    const handleScroll = () => {
-      const currentY = window.scrollY;
-      if (Math.abs(currentY - lastY) > 0.05) {
-        triggerMove(400);
-      }
-      lastY = currentY;
-    };
-
-    const handleWheel = () => triggerMove(400);
-    const handleTouchMove = () => triggerMove(400);
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("wheel", handleWheel, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-
-    const unsubscribeX = smoothTruckX.on("change", () => {
-      const velocity = Math.abs(smoothTruckX.getVelocity());
-      if (velocity > 0.01) {
-        triggerMove(400);
-      }
-    });
+    animId = requestAnimationFrame(checkMovement);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("touchmove", handleTouchMove, { passive: true } as any);
-      unsubscribeX();
-      if (stopTimeoutRef.current) clearTimeout(stopTimeoutRef.current);
+      cancelAnimationFrame(animId);
     };
   }, [smoothTruckX]);
 
@@ -702,11 +682,19 @@ export default function HomePage() {
       {/* 2. SECOND SECTION (MEATiN COLD CHAIN LOGISTICS TRUCK) */}
       <section
         ref={section2Ref}
-        className="relative w-full bg-[#EBF6E4] pt-12 pb-24 sm:pt-16 sm:pb-28 md:pt-20 md:pb-32 overflow-hidden flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat min-h-[300px] sm:min-h-[360px] md:min-h-[400px] lg:min-h-[440px]"
-        style={{
-          backgroundImage: "url('/Home/truck-section/truck-section-bg.webp')",
-        }}
+        className="relative w-full bg-[#EBF6E4] pt-12 pb-24 sm:pt-16 sm:pb-28 md:pt-20 md:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[300px] sm:min-h-[360px] md:min-h-[400px] lg:min-h-[440px]"
       >
+        {/* Even, slightly reduced doodle pattern layer */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0 opacity-55"
+          style={{
+            backgroundImage: "url('/Home/truck-section/truck-section-bg.webp')",
+            backgroundSize: "950px",
+            backgroundRepeat: "repeat",
+            backgroundPosition: "center",
+          }}
+        />
+
         {/* Animated Truck Assembly Moving Right-To-Left as User Scrolls Down */}
         <div className="w-full max-w-[95%] px-4 sm:px-8 relative z-10 flex justify-start items-center my-auto">
           <motion.div
@@ -772,15 +760,16 @@ export default function HomePage() {
             "radial-gradient(50% 50% at 50% 50%, rgba(103, 190, 71, 0.68) 0%, #094824 100%)",
         }}
       >
-        {/* Absolute Background Image Layer */}
-        <div className="absolute inset-0 pointer-events-none z-0 opacity-80">
-          <Image
-            src="/Home/section-bg.webp"
-            alt="Background pattern"
-            fill
-            className="object-cover object-center"
-          />
-        </div>
+        {/* Even, slightly reduced doodle pattern layer to match truck section */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0 opacity-55"
+          style={{
+            backgroundImage: "url('/Home/section-bg.webp')",
+            backgroundSize: "950px",
+            backgroundRepeat: "repeat",
+            backgroundPosition: "center",
+          }}
+        />
         <div className="w-full max-w-[1400px] lg:max-w-[92vw] mx-auto px-4 sm:px-6 lg:px-8 pt-2 lg:pt-2 2xl:pt-4 relative z-10">
           {/* Header */}
           <motion.div
@@ -866,16 +855,16 @@ export default function HomePage() {
 
       {/* 3. CERTIFIED EXCELLENCE SECTION */}
       <section ref={certSectionRef} className="relative w-full pt-10 pb-4 lg:pt-12 lg:pb-6 overflow-hidden">
-        {/* Section Background Image */}
-        <div className="absolute inset-0 pointer-events-none z-0 bg-[#DCDBDB]">
-          <Image
-            src="/Home/gray-bg-image.webp"
-            alt="Section background"
-            fill
-            className="object-cover opacity-[0.8]"
-            priority
-          />
-        </div>
+        {/* Section Background Image - Even doodle pattern with adjusted size and soft opacity */}
+        <div
+          className="absolute inset-0 pointer-events-none z-0 bg-[#DCDBDB] opacity-55"
+          style={{
+            backgroundImage: "url('/Home/gray-bg-image.webp')",
+            backgroundSize: "950px",
+            backgroundRepeat: "repeat",
+            backgroundPosition: "center",
+          }}
+        />
 
         <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-5">
           {/* Creative vertical green truck graphics on left side gutter */}

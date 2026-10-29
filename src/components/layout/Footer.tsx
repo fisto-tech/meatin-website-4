@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Main Content Container */}
-        <div className="relative z-20 w-full max-w-[1700px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 pt-16 sm:pt-20 pb-16">
+        <div className="relative z-20 w-full max-w-[1700px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 pt-16 sm:pt-20 lg:pt-12 pb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start">
 
             {/* Column 1: Brand Info & Social Icons */}
@@ -132,7 +132,7 @@ export const Footer: React.FC = () => {
                     href="https://maps.google.com/?q=Panchami+Complex+Perumpilavu"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="leading-relaxed text-[#374151] hover:text-[#064823] transition-colors"
+                    className="leading-relaxed hover:text-[#064823] font-medium text-[#2D3748] transition-colors"
                   >
                     15/809E, Panchami Complex, Perumpilavu, Karikkad P.O, Thrissur - 680519, Kerala
                   </a>
@@ -181,7 +181,7 @@ export const Footer: React.FC = () => {
                 <div className="w-8 h-[2px] bg-[#D4A437] mt-1.5" />
               </div>
 
-              <ul className="space-y-3.5 text-sm sm:text-[14.5px] text-[#374151] font-normal">
+              <ul className="space-y-3.5 text-sm sm:text-[14.5px] text-[#374151] font-medium">
                 <li>
                   <Link href="/" className="hover:text-[#064823] transition-colors flex items-center justify-between group">
                     <span>Home</span>
@@ -239,7 +239,7 @@ export const Footer: React.FC = () => {
                 <div className="w-8 h-[2px] bg-[#D4A437] mt-1.5" />
               </div>
 
-              <ul className="space-y-3.5 text-sm sm:text-[14.5px] text-[#374151] font-normal">
+              <ul className="space-y-3.5 text-sm sm:text-[14.5px] text-[#374151] font-medium">
                 <li>
                   <Link href="/know-your-meat" className="hover:text-[#064823] transition-colors flex items-center justify-between group">
                     <span>Know Your Meat</span>

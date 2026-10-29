@@ -3532,12 +3532,12 @@ export default function KnowYourMeatPage() {
 
       {/* 2. Categories Section */}
       <section
-        className={`bg-[#EBFFE6] relative z-30 transition-all duration-500 recipe-bottom-banner  overflow-visible ${activeMeatType === "chicken"
-          ? "rounded-t-[50px] sm:rounded-t-[60px] shadow-[0_-10px_40px_rgba(0,0,0,0.08)] pt-4 sm:pt-5 pb-3 sm:pb-4 mt-0 "
-          : "rounded-none shadow-none mt-0 pt-6 sm:pt-8 pb-3 sm:pb-4 "
+        className={`bg-[#EBFFE6] relative z-30 transition-all duration-500 recipe-bottom-banner overflow-visible ${activeMeatType === "chicken"
+          ? "rounded-t-[50px] sm:rounded-t-[60px] shadow-[0_-10px_40px_rgba(0,0,0,0.08)] pt-4 sm:pt-5 pb-8 sm:pb-10 lg:pb-12 mt-0 "
+          : "rounded-none shadow-none mt-0 pt-6 sm:pt-8 pb-8 sm:pb-10 lg:pb-12 "
           }`}
       >
-        <div className="relative py-[3vh] ">
+        <div className="relative pt-[3vh] pb-2 sm:pb-4">
           {/* Overlapping Mascot on the left */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8, x: -40 }}
