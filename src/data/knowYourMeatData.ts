@@ -789,12 +789,4 @@ export const PART_GLB_MAP: Record<string, string> = {
   drumsticks: "/Product/details/glb/drumstick.glb",
   Gizzard: "/Product/details/glb/gizzard.glb",
   gizzard: "/Product/details/glb/gizzard.glb",
-  Feet: "/Product/details/glb/feet.glb",
-  feet: "/Product/details/glb/feet.glb",
-  Head: "/Product/details/glb/head.glb",
-  head: "/Product/details/glb/head.glb",
-  Tenderloin: "/Product/details/glb/tenderloins.glb",
-  tenderloin: "/Product/details/glb/tenderloins.glb",
-  Tenderloins: "/Product/details/glb/tenderloins.glb",
-  tenderloins: "/Product/details/glb/tenderloins.glb",
 };

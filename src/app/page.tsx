@@ -643,27 +643,10 @@ export default function HomePage() {
                   transition={{ duration: 0.8 }}
                   className="space-y-3"
                 >
-                  <h1 className="text-4xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-[5.5vw] font-bold tracking-wide uppercase leading-[0.92] space-y-1.5">
-                    <span className="block text-[#F48207] normal-case">MEATiN</span>
+                  <h1 className="text-4xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-[5.5vw] font-extrabold tracking-wide uppercase leading-[0.92] space-y-1.5 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                    <span className="block text-[#F07C00] normal-case font-black">MEATiN</span>
                     <span className="block text-white">PURE QUALITY.</span>
-                    <span
-                      className="block"
-                      style={{
-                        filter: "drop-shadow(0px 8px 2.7px rgba(0, 0, 0, 0.95))",
-                      }}
-                    >
-                      <span
-                        className="block"
-                        style={{
-                          background: "linear-gradient(180deg, #BADE78 39.9%, #89CE34 59.13%)",
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          backgroundClip: "text",
-                        }}
-                      >
-                        TRUSTED MEAT.
-                      </span>
-                    </span>
+                    <span className="block text-white">TRUSTED MEAT.</span>
                   </h1>
                 </motion.div>
 
@@ -672,10 +655,9 @@ export default function HomePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
-                  <p className="text-white/90 text-sm sm:text-base lg:text-base xl:text-xl font-medium leading-relaxed font-inter max-w-xl">
-                    South India&apos;s{" "} Multi Species{" "} <br/>
-                    <span className="text-[#8DC541] font-bold">Meat</span>{" "}
-                    Processing Plant
+                  <p className="text-white/90 text-sm sm:text-base lg:text-base xl:text-xl font-medium leading-relaxed font-inter max-w-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
+                    South India&apos;s Multi Species <br/>
+                    Meat Processing Plant
                   </p>
                 </motion.div>
               </div>

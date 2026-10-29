@@ -62,7 +62,7 @@ const COMPONENTS: ComponentItem[] = [
 export default function InfrastructureSection() {
   return (
     <section className="relative w-full bg-[#F4F4EA] overflow-hidden flex flex-col justify-end pt-10 sm:pt-14 lg:pt-[3.6vw] pb-0 select-none">
-      
+
       {/* Background Factory Facility Building Image - Half height on desktop docked top right with zoom-in reveal */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <motion.div
@@ -88,12 +88,12 @@ export default function InfrastructureSection() {
       {/* Main Content Area */}
       <div className="w-full max-w-[1920px] mx-auto px-5 sm:px-8 lg:px-[3.6vw] relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-end">
-          
+
           {/* LEFT COLUMN: Headings & 9 Pill Items */}
           <div className="lg:col-span-5 pb-6 sm:pb-10 lg:pb-[2.8vw] z-10">
-            
+
             {/* Eyebrow & Main Headings */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.2 }}
@@ -155,21 +155,17 @@ export default function InfrastructureSection() {
                     damping: 14,
                     delay: 0.08 + idx * 0.045,
                   }}
-                  whileHover={{ 
+                  whileHover={{
                     x: 10,
                     scale: 1.02,
-                    backgroundColor: '#F0F9EC',
-                    borderColor: '#8DC541',
-                    boxShadow: '0px 10px 24px rgba(31, 90, 60, 0.15)',
+                  
                   }}
                   whileTap={{ scale: 0.98 }}
                   style={{
-                    backgroundColor: '#F9FCF7',
                     border: '1.5px solid #EEF4EE',
-                    boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.08)',
                     borderRadius: '164.387px',
                   }}
-                  className="w-full py-2 sm:py-2.5 lg:py-[0.5vw] pl-3.5 sm:pl-4 lg:pl-[1.1vw] pr-4 sm:pr-6 lg:pr-[2.5vw] flex items-center justify-between gap-3 sm:gap-3.5 lg:gap-[0.9vw] transition-all duration-300 group cursor-pointer"
+                  className="w-full py-2 sm:py-2.5 lg:py-[0.5vw] pl-3.5 sm:pl-4 lg:pl-[1.1vw] pr-4 sm:pr-6 lg:pr-[2.5vw] flex items-center justify-between gap-3 sm:gap-3.5 lg:gap-[0.9vw] transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-[0.9vw]">
                     {/* Dark Green Icon with dynamic pop & spin on hover */}
@@ -186,10 +182,7 @@ export default function InfrastructureSection() {
                     </span>
                   </div>
 
-                  {/* Micro Arrow indicator on hover */}
-                  <div className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 text-[#8DC541]">
-                    <Icon icon="lucide:arrow-right" className="w-4 h-4 sm:w-4.5 sm:h-4.5 lg:w-[1vw] lg:h-[1vw]" />
-                  </div>
+                 
                 </motion.div>
               ))}
             </div>
@@ -198,7 +191,7 @@ export default function InfrastructureSection() {
 
           {/* RIGHT COLUMN: Meat Worker & 2 Stacked Photo Cards */}
           <div className="lg:col-span-7 relative flex items-end justify-center lg:justify-end z-20">
-            
+
             {/* Center-Right: Meat Worker holding blue crate with grounded lift-up scroll entrance */}
             <motion.div
               initial={{ opacity: 0, y: 70, scale: 0.95 }}
@@ -219,16 +212,16 @@ export default function InfrastructureSection() {
 
             {/* Far-Right: 2 Stacked Rounded Photo Cards with Rich 3D Hover Depth */}
             <div className="hidden md:flex flex-col gap-3.5 sm:gap-4 lg:gap-[1.3vw] absolute right-0 top-[45%] lg:top-[53%] -translate-y-1/2 z-30 pointer-events-auto">
-              
+
               {/* Card 1: Processing Line with Workers */}
               <motion.div
                 initial={{ opacity: 0, x: 50, scale: 0.88, rotate: 4 }}
                 whileInView={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ type: "spring", stiffness: 90, damping: 14, delay: 0.25 }}
-                whileHover={{ 
-                  scale: 1.08, 
-                  rotate: 0, 
+                whileHover={{
+                  scale: 1.08,
+                  rotate: 0,
                   y: -6,
                   boxShadow: '0 25px 50px -12px rgba(6, 61, 38, 0.35)'
                 }}
@@ -253,9 +246,9 @@ export default function InfrastructureSection() {
                 whileInView={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
                 viewport={{ once: false, amount: 0.2 }}
                 transition={{ type: "spring", stiffness: 90, damping: 14, delay: 0.38 }}
-                whileHover={{ 
-                  scale: 1.08, 
-                  rotate: 0, 
+                whileHover={{
+                  scale: 1.08,
+                  rotate: 0,
                   y: -6,
                   boxShadow: '0 25px 50px -12px rgba(6, 61, 38, 0.35)'
                 }}

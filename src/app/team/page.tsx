@@ -364,9 +364,9 @@ export default function TeamPage() {
     <div className="w-full bg-[#FCFAF7] text-[#1E293B] overflow-x-clip font-manrope">
 
       {/* Hero Section */}
-      <section className="relative w-full pt-[85px] sm:pt-[95px] lg:pt-[95px] bg-white flex items-center overflow-hidden">
-        {/* Full Edge-to-Edge Hero Image Container */}
-        <div className="relative w-full min-h-[310px] sm:min-h-[370px] lg:h-[390px] py-4 sm:py-6 lg:py-0 flex items-center overflow-hidden">
+      <section className="relative w-full pt-[68px] sm:pt-[72px] lg:pt-[78px] bg-white flex items-center overflow-hidden">
+        {/* Full Edge-to-Edge Hero Image Container - Slightly reduced height */}
+        <div className="relative w-full min-h-[360px] sm:min-h-[420px] lg:h-[460px] xl:h-[490px] flex items-center overflow-hidden">
           {/* Edge to Edge Image */}
           <div className="absolute inset-0 w-full h-full z-0">
             <Image

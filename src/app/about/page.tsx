@@ -553,13 +553,13 @@ export default function AboutUsPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative px-6 pt-11 pb-32 sm:px-10 lg:px-14 xl:px-16 sm:pt-14 lg:pt-16 xl:pt-18 flex flex-col justify-start text-white lg:overflow-hidden min-h-auto lg:min-h-[580px] xl:min-h-[635px]"
+            className="relative px-6 pt-11 pb-16 sm:px-10 lg:px-14 xl:px-16 sm:pt-14 lg:pt-16 xl:pt-18 flex flex-col justify-start text-white lg:overflow-hidden min-h-auto lg:min-h-[500px] xl:min-h-[540px]"
           >
             <Image
               src="/AboutUs/mission-image.webp"
               alt="Our Mission background"
               fill
-              className="object-cover object-[50%_80%]  z-0"
+              className="object-cover object-[50%_80%] z-0"
               sizes="50vw"
             />
             {/* Full-height yellow-green overlay on mobile/tablet (1024px and below) for text contrast, and top-only (h-[65%]) overlay on desktop */}
@@ -598,7 +598,7 @@ export default function AboutUsPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, margin: "-100px" }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative px-6 pt-11 pb-32 sm:px-10 lg:px-14 xl:px-16 sm:pt-14 lg:pt-16 xl:pt-18 flex flex-col justify-start text-white lg:overflow-hidden min-h-auto lg:min-h-[580px] xl:min-h-[635px]"
+            className="relative px-6 pt-11 pb-16 sm:px-10 lg:px-14 xl:px-16 sm:pt-14 lg:pt-16 xl:pt-18 flex flex-col justify-start text-white lg:overflow-hidden min-h-auto lg:min-h-[500px] xl:min-h-[540px]"
           >
             {/* Floating Center MEATiN Logo Badge (Mobile/Tablet only, anchored directly to top seam) */}
             <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 z-20 lg:hidden">
@@ -662,59 +662,64 @@ export default function AboutUsPage() {
           </motion.div>
 
         </div>
+      </section>
 
-        {/* 5. FLOATING CORE VALUES CONTAINER CARD */}
-        <div className="bg-[#d8d8d6] lg:bg-transparent relative lg:absolute lg:bottom-6 left-0 lg:left-1/2 lg:-translate-x-1/2 w-full max-w-[950px] lg:max-w-[56vw] pt-6 sm:pt-6 md:pt-10 lg:pt-0 px-4 sm:px-6 lg:px-8 mx-auto lg:mx-0 -mt-16 lg:-mt-0 z-20">
+      {/* 5. FULL-WIDTH CORE VALUES SECTION (COMPACT & SLEEK) */}
+      <section className="relative w-full bg-[#F6F5F0] border-y border-[#E5EAE1] py-4 sm:py-5 lg:py-6 px-4 sm:px-6 lg:px-8">
+        <div className="w-full max-w-[1200px] mx-auto space-y-3 sm:space-y-4">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.6 }}
-            className="bg-[#F6F5F0] rounded-[24px] border border-[#E5EAE1] shadow-[0_10px_28px_rgba(0,0,0,0.06)] p-3.5 sm:p-4 lg:py-3.5 px-4 text-center space-y-2.5"
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="text-center"
           >
-            <h3 className="text-xl sm:text-2xl lg:text-xl xl:text-2xl font-bold text-[#064823] tracking-tight uppercase flex items-center justify-center gap-3 font-barlow leading-none">
-              <span className="w-6 sm:w-10 h-[2px] bg-[#F7840F]" /> OUR VALUES <span className="w-6 sm:w-10 h-[2px] bg-[#F7840F]" />
+            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#064823] tracking-wide uppercase flex items-center justify-center gap-2.5 font-barlow leading-none">
+              <span className="w-6 sm:w-8 h-[2px] bg-[#F7840F]" />
+              OUR VALUES
+              <span className="w-6 sm:w-8 h-[2px] bg-[#F7840F]" />
             </h3>
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, margin: "-50px" }}
-              className="grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-4 lg:grid-cols-[0.85fr_1fr_1fr_1.15fr] gap-y-3 min-[400px]:gap-y-4 md:gap-y-0 divide-y divide-[#8DC541]/30 min-[400px]:divide-y-0 md:divide-x md:divide-[#8DC541] w-full items-start"
-            >
-              {coreValues.map((val, idx) => {
-                return (
-                  <motion.div
-                    key={idx}
-                    variants={springPop}
-                    className={`flex flex-col items-center text-center px-2 sm:px-3 lg:px-4 pt-2 min-[400px]:pt-3 md:pt-0 ${idx >= 2 ? 'min-[400px]:border-t min-[400px]:border-[#8DC541]/30 md:border-t-0' : ''
-                      }`}
-                  >
-                    {/* SVG Vector Icon */}
-                    <div className="relative w-7 h-7 sm:w-8 sm:h-8 lg:w-8 lg:h-8 xl:w-9 xl:h-9 mb-1">
-                      <Image
-                        src={val.icon}
-                        alt={val.title}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <h4 className="text-sm sm:text-base lg:text-sm xl:text-base 2xl:text-[17px] font-bold text-[#064823] font-barlow tracking-wide uppercase mb-0.5 leading-none whitespace-nowrap">{val.title}</h4>
-                    <p className="text-[11px] sm:text-xs lg:text-[11px] xl:text-xs 2xl:text-xs text-slate-700 font-normal leading-tight max-w-[130px] sm:max-w-[150px] lg:max-w-[140px] xl:max-w-[170px] mx-auto">
-                      {val.desc.split('\n').map((line, lIdx) => (
-                        <React.Fragment key={lIdx}>
-                          {line}
-                          {lIdx < val.desc.split('\n').length - 1 && <br />}
-                        </React.Fragment>
-                      ))}
-                    </p>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-y-3 gap-x-2 md:gap-x-0 md:divide-x md:divide-[#8DC541]/40 w-full items-start"
+          >
+            {coreValues.map((val, idx) => {
+              return (
+                <motion.div
+                  key={idx}
+                  variants={springPop}
+                  className="flex flex-col items-center text-center px-2 sm:px-4"
+                >
+                  {/* Compact SVG Vector Icon */}
+                  <div className="relative w-7 h-7 sm:w-8 sm:h-8 mb-1">
+                    <Image
+                      src={val.icon}
+                      alt={val.title}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <h4 className="text-xs sm:text-sm lg:text-[15px] font-bold text-[#064823] font-barlow tracking-wide uppercase mb-0.5 leading-none whitespace-nowrap">
+                    {val.title}
+                  </h4>
+                  <p className="text-[11px] sm:text-xs text-slate-600 font-normal leading-tight max-w-[150px] mx-auto font-manrope">
+                    {val.desc.split('\n').map((line, lIdx) => (
+                      <React.Fragment key={lIdx}>
+                        {line}
+                        {lIdx < val.desc.split('\n').length - 1 && <br />}
+                      </React.Fragment>
+                    ))}
+                  </p>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
-
       </section>
 
       {/* 6. MEATiN INFRASTRUCTURE COMPONENTS SECTION */}

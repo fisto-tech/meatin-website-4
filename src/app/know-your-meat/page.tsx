@@ -3803,52 +3803,47 @@ export default function KnowYourMeatPage() {
               </div>
             </motion.div>
           </div>
+        </div>
 
-          {/* Bottom Floating 8-Icon Capability Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 45, scale: 0.96 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: false, amount: 0.15 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="mt-3 sm:mt-4 lg:mt-5 bg-[#F1F7EE] rounded-2xl sm:rounded-[24px] p-4 sm:p-5 lg:py-5 lg:px-4 shadow-[0_12px_36px_rgba(0,0,0,0.06)] border border-slate-200/80"
-          >
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-y-6 sm:gap-y-6 gap-x-3 sm:gap-x-4 lg:gap-x-0 lg:divide-x lg:divide-slate-200/90 items-start">
+        {/* Full-Width 8-Pillars Production Capability Bar */}
+        <div className="w-full mt-10 sm:mt-12 lg:mt-14 border-t border-slate-300/70 bg-[#EDF4EA]/80 backdrop-blur-sm py-5 sm:py-6 lg:py-7 px-4 sm:px-6 lg:px-12">
+          <div className="max-w-[1700px] mx-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-y-6 sm:gap-y-6 gap-x-2 sm:gap-x-4 lg:gap-x-0 lg:divide-x lg:divide-slate-300/80 items-start">
               {PRODUCTION_PILLARS.map((pillar, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 25, scale: 0.8 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: false, amount: 0.15 }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{
                     type: "spring",
-                    stiffness: 120,
-                    damping: 12,
-                    delay: 0.1 + idx * 0.05,
+                    stiffness: 140,
+                    damping: 14,
+                    delay: 0.05 + idx * 0.04,
                   }}
                   className="flex flex-col items-center text-center px-1.5 lg:px-2 group cursor-default"
                 >
-                  {/* Circular Icon Container with spring pop */}
+                  {/* Circular Icon Container */}
                   <motion.div
-                    whileHover={{ scale: 1.15, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    className="w-13 h-13 sm:w-15 sm:h-15 lg:w-[63px] lg:h-[63px] rounded-full bg-[#E6F1E0] flex items-center justify-center mb-2 sm:mb-2.5 shrink-0 shadow-sm group-hover:bg-[#D5EACD] group-hover:shadow-md transition-colors duration-300"
+                    whileHover={{ scale: 1.1, rotate: 4 }}
+                    transition={{ type: "spring", stiffness: 350, damping: 15 }}
+                    className="w-12 h-12 sm:w-13 sm:h-13 lg:w-[56px] lg:h-[56px] rounded-full bg-white flex items-center justify-center mb-2 shrink-0 shadow-sm border border-slate-200/80 group-hover:bg-[#D5EACD] group-hover:border-[#1E5638]/30 transition-all duration-300"
                   >
                     <Icon
                       icon={pillar.icon}
-                      className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-[#1E5638] transition-colors duration-300 group-hover:text-[#134229]"
+                      className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#1E5638] transition-colors duration-300 group-hover:text-[#134229]"
                     />
                   </motion.div>
 
                   {/* 2-line Label */}
-                  <span className="text-[12px] sm:text-[13px] lg:text-[13.5px] font-semibold text-[#1E3A2B] group-hover:text-[#124b2b] transition-colors leading-[1.22] max-w-[125px]">
+                  <span className="text-[12px] sm:text-[13px] lg:text-[13.5px] font-semibold text-[#1E3A2B] group-hover:text-[#124b2b] transition-colors leading-[1.25] max-w-[125px]">
                     <span className="block">{pillar.line1}</span>
                     <span className="block">{pillar.line2}</span>
                   </span>
                 </motion.div>
               ))}
             </div>
-          </motion.div>
-
+          </div>
         </div>
       </section>
 

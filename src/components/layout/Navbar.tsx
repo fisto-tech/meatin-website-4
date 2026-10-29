@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
-import Logo from './Logo';
 
 interface NavItem {
   label: string;
@@ -37,7 +37,6 @@ export const Navbar: React.FC = () => {
       } catch (e) {}
     });
   }, [router]);
-
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -75,30 +74,52 @@ export const Navbar: React.FC = () => {
     return current === target || current.startsWith(`${target}/`);
   };
 
-  const containerBgClass = 'bg-white/95 border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.08)]';
-
-  const getLinkColorClass = (isActive: boolean) => {
-    if (isActive) {
-      return 'text-[#C62828] font-black';
-    }
-    return 'text-slate-800 hover:text-[#064823]';
+  // Determine if current page is one of the requested transparent-hero pages
+  // Handles: know-your-meat, product (or products), vlog, and team
+  const isTransparentHeroPage = () => {
+    if (!pathname) return false;
+    const path = pathname.split('?')[0].replace(/\/+$/, '') || '/';
+    return (
+      path === '/know-your-meat' ||
+      path === '/product' ||
+      path === '/products' ||
+      path === '/vlog'
+    );
   };
 
-  const getUnderlineColorClass = () => {
-    return 'bg-[#C62828]';
-  };
-
-  const hamburgerColorClass = 'text-slate-800 hover:bg-slate-100';
+  const isTransparentHero = isTransparentHeroPage();
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 w-full p-4 lg:p-[1vw] pointer-events-none" suppressHydrationWarning>
-        <div className={`w-full max-w-[1400px] lg:max-w-[95vw] mx-auto px-4 sm:px-6 lg:px-[1.5vw] py-2 lg:py-[0.5vw] flex items-center justify-between font-inter border transition-all duration-300 rounded-[20px] pointer-events-auto ${containerBgClass}`}>
-          {/* Logo */}
-          <Logo variant="dark" className="shrink-0" />
+      {/* Sticky top full-width header navbar */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ease-in-out ${
+          scrolled
+            ? 'bg-white/95 backdrop-blur-md shadow-[0_4px_25px_rgba(0,0,0,0.08)] border-b border-slate-200/80 py-3 sm:py-3.5'
+            : isTransparentHero
+            ? 'bg-transparent border-b border-transparent py-3.5 sm:py-4 lg:py-4.5'
+            : 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3.5 sm:py-4 lg:py-4.5'
+        }`}
+        suppressHydrationWarning
+      >
+        <div className="w-full max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex items-center justify-between font-inter">
+          
+          {/* Logo with proper brand prominence and vertical clearance */}
+          <Link href="/" className="inline-flex items-center group shrink-0" suppressHydrationWarning>
+            <div className="relative flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+              <Image
+                src="/meatin-logo.webp"
+                alt="MEATiN Logo"
+                width={170}
+                height={60}
+                className="h-10 sm:h-11 lg:h-12 w-auto object-contain"
+                priority
+              />
+            </div>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-2 xl:gap-3.5 2xl:gap-[1.8vw] whitespace-nowrap" suppressHydrationWarning>
+          {/* Desktop Navigation with comfortable text sizing and balanced spacing */}
+          <nav className="hidden lg:flex items-center gap-3 xl:gap-5 2xl:gap-7 whitespace-nowrap" suppressHydrationWarning>
             {navItems.map((item) => {
               const isActive = isItemActive(item.href);
 
@@ -113,33 +134,34 @@ export const Navbar: React.FC = () => {
                     } catch (e) {}
                   }}
                   suppressHydrationWarning
-                  className={`relative text-xs lg:text-[11px] xl:text-xs 2xl:text-[0.8vw] font-black font-inter tracking-wider transition-all duration-200 lg:px-1 xl:px-1.5 py-1 ${getLinkColorClass(isActive)}`}
+                  className={`relative text-xs xl:text-[13px] 2xl:text-sm font-bold font-inter tracking-wider transition-all duration-200 py-1.5 ${
+                    isActive ? 'text-[#C62828]' : 'text-slate-800 hover:text-[#064823]'
+                  }`}
                 >
                   {item.label}
                   {isActive && (
-                    <span className={`absolute bottom-0 left-0 right-0 h-[2px] rounded-full ${getUnderlineColorClass()}`} />
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#C62828] rounded-full" />
                   )}
                 </Link>
-
               );
             })}
           </nav>
 
           {/* Enquiry Button (Desktop) & Hamburger Menu (Mobile/Tablet) */}
-          <div className="flex items-center gap-3 lg:gap-4 2xl:gap-[1vw]">
+          <div className="flex items-center gap-3">
             <Link
               href="/contact"
               suppressHydrationWarning
-              className="hidden sm:inline-block bg-[#064823] hover:bg-[#0a5e30] text-white font-bold font-inter text-xs lg:text-xs xl:text-xs 2xl:text-[0.75vw] px-4 lg:px-4 py-2 lg:py-2 rounded-xl uppercase tracking-wider transition-all shadow-md active:scale-95"
+              className="hidden sm:inline-block bg-[#064823] hover:bg-[#0a5e30] text-white font-bold font-inter text-xs xl:text-sm px-4 xl:px-5 py-2 lg:py-2.5 rounded-lg uppercase tracking-wider transition-all shadow-sm active:scale-95"
             >
-              ENQUIRY KNOW
+              ENQUIRY NOW
             </Link>
 
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Toggle navigation menu"
-              className={`lg:hidden p-2 rounded-xl transition-colors ${hamburgerColorClass}`}
+              className="lg:hidden p-2 rounded-lg text-slate-800 hover:bg-slate-100 transition-colors"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -163,56 +185,59 @@ export const Navbar: React.FC = () => {
         suppressHydrationWarning
       >
         {/* Drawer Header */}
-        <div className="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
-          <Logo variant="dark" />
+        <div className="p-5 flex items-center justify-between border-b border-slate-100">
+          <Link href="/" onClick={() => setMobileMenuOpen(false)}>
+            <Image
+              src="/meatin-logo.webp"
+              alt="MEATiN Logo"
+              width={130}
+              height={45}
+              className="h-8 w-auto object-contain"
+            />
+          </Link>
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="p-2 text-slate-500 hover:text-slate-900 rounded-lg hover:bg-slate-200 transition-colors"
-            aria-label="Close menu"
+            aria-label="Close navigation menu"
+            className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
-        {/* Drawer Navigation Links */}
-        <div className="flex-1 overflow-y-auto p-5 space-y-2" suppressHydrationWarning>
+        {/* Drawer Links */}
+        <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-1.5">
           {navItems.map((item) => {
             const isActive = isItemActive(item.href);
+
             return (
               <Link
                 key={item.label}
                 href={item.href}
-                prefetch={true}
-                suppressHydrationWarning
                 onClick={() => setMobileMenuOpen(false)}
-                className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs font-bold font-inter tracking-wider transition-all ${
+                className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold tracking-wider transition-colors ${
                   isActive
-                    ? 'bg-[#064823]/10 text-[#064823] font-extrabold border-l-4 border-[#064823]'
+                    ? 'bg-red-50 text-[#C62828]'
                     : 'text-slate-800 hover:bg-slate-50 hover:text-[#064823]'
                 }`}
               >
                 <span>{item.label}</span>
                 {isActive && (
-                  <span className="w-2 h-2 rounded-full bg-[#F7840F]" />
+                  <span className="w-2 h-2 rounded-full bg-[#C62828]" />
                 )}
               </Link>
             );
           })}
-          <div className="pt-4 sm:hidden">
-            <Link
-              href="/contact"
-              suppressHydrationWarning
-              onClick={() => setMobileMenuOpen(false)}
-              className="block w-full text-center bg-[#064823] hover:bg-[#0a5e30] text-white font-bold font-inter text-xs py-3 rounded-xl uppercase tracking-wider transition-all shadow-md"
-            >
-              ENQUIRY KNOW
-            </Link>
-          </div>
-        </div>
+        </nav>
 
-        {/* Drawer Footer */}
-        <div className="p-5 border-t border-slate-100 bg-slate-50/50 text-center text-xs text-slate-400 font-medium">
-          Fresh. Hygienic. Scientifically Processed.
+        {/* Drawer Footer CTA */}
+        <div className="p-4 border-t border-slate-100">
+          <Link
+            href="/contact"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block w-full py-3 px-4 bg-[#064823] hover:bg-[#0a5e30] text-white text-center font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md active:scale-95"
+          >
+            ENQUIRY NOW
+          </Link>
         </div>
       </aside>
     </>
