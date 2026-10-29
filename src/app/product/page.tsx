@@ -523,26 +523,39 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
         {/* TOP MAIN CONTENT CONTAINER */}
         <div className="relative w-full max-w-[100vw] mx-auto px-4 lg:px-[3.5vw] flex-1 lg:flex-none flex flex-col justify-start z-10 pt-1 lg:pt-[0.5vw]">
 
-          {/* Top Left Farm Fresh Trust Badge (Clean Typography & Brand Accent) */}
-          <div className="hidden md:flex flex-col items-start absolute top-[1.2rem] lg:top-[1.6rem] xl:top-[2rem] 2xl:top-[2.4rem] left-[2.5vw] md:left-[3.5vw] z-20 pointer-events-none">
-            <div className="bg-white/85 backdrop-blur-md border border-white/80 rounded-2xl px-4 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-3 max-w-[230px]">
-              <div className="w-9 h-9 rounded-xl bg-[#064823]/10 border border-[#064823]/15 flex items-center justify-center shrink-0 text-[#064823]">
-                <ShieldCheck className="w-5 h-5 text-[#064823]" />
+          {/* Top Left Authentic Quality Badges (Official Vector SVG from brand design) */}
+          <div className="hidden md:flex items-start gap-4 absolute top-[1.2rem] lg:top-[1.6rem] xl:top-[2.2rem] left-[3vw] z-20 pointer-events-none select-none">
+            <div className="flex items-center gap-3 bg-white/70 backdrop-blur-md border border-white/60 rounded-2xl px-3.5 py-2.5 shadow-[0_8px_25px_rgba(0,0,0,0.06)]">
+              {/* Badge 1: Farm Fresh */}
+              <div className="w-[50px] lg:w-[3.8vw] max-w-[62px] h-auto flex flex-col items-center">
+                <Image
+                  src="/Product/details/section-images/farm-fresh.svg"
+                  alt="Farm Fresh"
+                  width={76}
+                  height={144}
+                  className="w-full h-auto object-contain drop-shadow-sm"
+                  priority
+                />
               </div>
-              <div className="flex flex-col text-left">
-                <span className="text-[10px] font-bold text-[#8DC541] tracking-widest uppercase font-inter">
-                  100% FARM FRESH
-                </span>
-                <span className="text-xs lg:text-[13px] font-black text-[#064823] tracking-tight uppercase leading-tight font-anek">
-                  Ethically Sourced
-                </span>
-                <span className="text-[9.5px] font-semibold text-slate-500 leading-tight">
-                  Raised on natural diet
-                </span>
+
+              {/* Divider */}
+              <div className="w-[1px] h-12 bg-black/10" />
+
+              {/* Badge 2: Quality Checked */}
+              <div className="w-[58px] lg:w-[4.4vw] max-w-[72px] h-auto flex flex-col items-center">
+                <Image
+                  src="/Product/details/section-images/quality-checked.svg"
+                  alt="Quality Checked"
+                  width={95}
+                  height={144}
+                  className="w-full h-auto object-contain drop-shadow-sm"
+                  priority
+                />
               </div>
             </div>
-            {/* Natural Leaf Accent Below Badge */}
-            <div className="w-[6vw] max-w-[100px] h-auto ml-[2vw] mt-1 opacity-90">
+
+            {/* Decorative leaf cluster */}
+            <div className="w-[5.5vw] max-w-[90px] h-auto opacity-80 mt-2">
               <Image
                 src="/Product/details/section-images/two-leaves-images.webp"
                 alt="Natural Leaves"

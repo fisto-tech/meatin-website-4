@@ -1405,7 +1405,7 @@ export default function KnowYourMeatPage() {
                 initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.45, delay: 0.22, ease: "easeOut" }}
-                className="text-4xl md:text-5xl font-bold font-bree tracking-wide uppercase leading-none text-[#222222] viz-title-main"
+                className="text-4xl md:text-5xl font-black font-anek tracking-wide uppercase leading-none text-[#222222] viz-title-main"
               >
                 {activeMeatType === "chicken" ? (
                   activeStage === "skin" ? (

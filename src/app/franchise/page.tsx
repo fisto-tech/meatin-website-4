@@ -24,6 +24,7 @@ export default function FranchisePage() {
   const [panPos, setPanPos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
   const [selectedOutlet, setSelectedOutlet] = useState<OutletInfo | null>(null);
   const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [windowWidth, setWindowWidth] = useState<number>(1920);
 
   // Preload both map images immediately at page load to avoid viewport or toggle fetch delays
   useEffect(() => {
@@ -103,12 +104,13 @@ export default function FranchisePage() {
   const popupCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const checkMobile = () => {
+    const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
+      setWindowWidth(window.innerWidth);
     };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Close tooltip popup card when clicking outside
@@ -329,6 +331,11 @@ export default function FranchisePage() {
     setSelectedOutlet(null);
   };
 
+  // Responsive spotlight circle radius for small/normal desktop (<= 1600px) vs ultra-wide
+  const spotlightRadius = windowWidth <= 1280 ? 80 : windowWidth <= 1440 ? 90 : windowWidth <= 1600 ? 100 : 130;
+  const spotlightDiameter = spotlightRadius * 2;
+  const autoRadiusScale = windowWidth <= 1600 ? 0.8 : 1.0;
+
   return (
     <div className="relative min-h-screen bg-[#FDFBF7] text-slate-800 font-manrope selection:bg-[#8DC541] selection:text-white overflow-x-clip pt-0">
       {/* Hidden Eager Preloader for Map Images (Instant load at page mount) */}
@@ -353,7 +360,7 @@ export default function FranchisePage() {
       {/* ============================================================ */}
       {/* SECTION 1: HERO & STORE SHOWCASE (EXACT MATCH TO DESIGN) */}
       {/* ============================================================ */}
-      <section className="relative w-full min-h-[auto] lg:min-h-[calc(100vh-50px)] pt-[88px] sm:pt-[94px] lg:pt-[108px] xl:pt-[115px] pb-4 sm:pb-6 lg:pb-8 px-2 sm:px-4 lg:px-6 xl:px-8 bg-slate-900 overflow-x-hidden overflow-y-visible select-none flex flex-col items-center justify-between">
+      <section className="relative w-full min-h-[auto] lg:min-h-[calc(100vh-50px)] pt-[88px] sm:pt-[94px] lg:pt-[108px] xl:pt-[115px] pb-4 sm:pb-6 lg:pb-8 px-2 sm:px-4 lg:px-6 xl:px-8 bg-slate-900 overflow-hidden select-none flex flex-col items-center justify-between">
         {/* Background Image: franchise-bg-new.webp */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <Image
@@ -437,7 +444,7 @@ export default function FranchisePage() {
               </div>
 
               {/* Desktop View (Interactive Spotlight Lens Cursor Reveal) */}
-              <div className="hidden lg:block relative w-full h-auto">
+              <div className="hidden lg:block relative w-full h-auto overflow-hidden rounded-2xl">
                 {/* Layer 1 (Base): Store Exterior Facade */}
                 <Image
                   src="/Franchies/hero-overlay-image.webp"
@@ -453,11 +460,11 @@ export default function FranchisePage() {
                   className="absolute inset-0 w-full h-full pointer-events-none transition-[clip-path] duration-75 ease-out"
                   style={{
                     clipPath: isHovered && mousePos
-                      ? `circle(130px at ${mousePos.x}px ${mousePos.y}px)`
-                      : `circle(${autoPos.radius * 1.1}px at ${autoPos.xPercent}% ${autoPos.yPercent}%)`,
+                      ? `circle(${spotlightRadius}px at ${mousePos.x}px ${mousePos.y}px)`
+                      : `circle(${autoPos.radius * 1.1 * autoRadiusScale}px at ${autoPos.xPercent}% ${autoPos.yPercent}%)`,
                     WebkitClipPath: isHovered && mousePos
-                      ? `circle(130px at ${mousePos.x}px ${mousePos.y}px)`
-                      : `circle(${autoPos.radius * 1.1}px at ${autoPos.xPercent}% ${autoPos.yPercent}%)`,
+                      ? `circle(${spotlightRadius}px at ${mousePos.x}px ${mousePos.y}px)`
+                      : `circle(${autoPos.radius * 1.1 * autoRadiusScale}px at ${autoPos.xPercent}% ${autoPos.yPercent}%)`,
                   }}
                 >
                   <Image
@@ -476,8 +483,8 @@ export default function FranchisePage() {
                   style={{
                     left: isHovered && mousePos ? `${mousePos.x}px` : `${autoPos.xPercent}%`,
                     top: isHovered && mousePos ? `${mousePos.y}px` : `${autoPos.yPercent}%`,
-                    width: isHovered ? '260px' : `${autoPos.radius * 2.2}px`,
-                    height: isHovered ? '260px' : `${autoPos.radius * 2.2}px`,
+                    width: isHovered ? `${spotlightDiameter}px` : `${autoPos.radius * 2.2 * autoRadiusScale}px`,
+                    height: isHovered ? `${spotlightDiameter}px` : `${autoPos.radius * 2.2 * autoRadiusScale}px`,
                     opacity: (!isHovered && autoPos.radius < 5) ? 0 : 1,
                   }}
                 />
