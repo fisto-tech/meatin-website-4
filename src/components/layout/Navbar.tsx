@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
 interface NavItem {
@@ -23,8 +23,9 @@ const navItems: NavItem[] = [
   { label: 'CONTACT US', href: '/contact' },
 ];
 
-export const Navbar: React.FC = () => {
+const NavbarContent: React.FC = () => {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -74,23 +75,29 @@ export const Navbar: React.FC = () => {
     return current === target || current.startsWith(`${target}/`);
   };
 
-  // Transparent navbar starting state for all pages EXCEPT meet our team (/team)
+  // Transparent navbar starting state for all hero pages
   const isTransparentNavbarPage = () => {
-    if (!pathname) return true;
-    const path = pathname.split('?')[0].replace(/\/+$/, '') || '/';
-    return path !== '/team';
+    return true;
   };
 
   // Pages where transparent navbar should have dark/black text:
-  // Know Your Meat (/know-your-meat), Franchise (/franchise), Vlog (/vlog)
+  // Know Your Meat (/know-your-meat), Franchise (/franchise), Vlog (/vlog),
+  // AND Product Detail screen (e.g. /product?part=... or /product?id=...)
   const isDarkTextNavbarPage = () => {
     if (!pathname) return false;
     const path = pathname.split('?')[0].replace(/\/+$/, '') || '/';
-    return (
+    if (
       path === '/know-your-meat' ||
       path === '/franchise' ||
       path === '/vlog'
-    );
+    ) {
+      return true;
+    }
+    if (path === '/product' || path === '/products') {
+      const hasPartParam = searchParams ? (searchParams.has('part') || searchParams.has('id')) : false;
+      if (hasPartParam) return true;
+    }
+    return false;
   };
 
   const isTransparentHero = isTransparentNavbarPage();
@@ -279,6 +286,14 @@ export const Navbar: React.FC = () => {
         </div>
       </aside>
     </>
+  );
+};
+
+export const Navbar: React.FC = () => {
+  return (
+    <React.Suspense fallback={null}>
+      <NavbarContent />
+    </React.Suspense>
   );
 };
 
