@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   motion,
   useScroll,
@@ -9,6 +10,7 @@ import {
   useSpring,
   useMotionValueEvent,
 } from "framer-motion";
+import { ArrowRight, ShieldCheck, Leaf, Snowflake, Truck, Sparkles } from "lucide-react";
 import TrustedQualityBanner from "@/components/layout/TrustedQualityBanner";
 import TruckSvg from "@/components/TruckSvg";
 
@@ -598,7 +600,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#F6F5F0] overflow-x-clip font-manrope">
       {/* 1. HERO BANNER WITH STICKY SCROLL SEQUENCE */}
       <section ref={heroRef} className="relative w-full h-[380vh] bg-black">
-        <div className="sticky top-0 left-0 w-full h-screen flex items-center bg-black overflow-hidden">
+        <div className="sticky top-0 left-0 w-full h-screen flex items-center bg-black overflow-hidden select-none">
           {/* Background Frame Sequence Canvas */}
           <div className="absolute inset-0 z-0 select-none pointer-events-none w-full h-full">
             <canvas
@@ -607,7 +609,6 @@ export default function HomePage() {
             />
             {/* Gradients for readability */}
             <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 lg:via-transparent to-transparent" />
-            {/* <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black/60 to-transparent" /> */}
           </div>
 
           <motion.div
@@ -624,7 +625,7 @@ export default function HomePage() {
                   className="space-y-3"
                 >
                   <h1 className="text-4xl sm:text-6xl lg:text-6xl xl:text-7xl 2xl:text-[5.5vw] font-extrabold tracking-wide uppercase leading-[0.92] space-y-1.5 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                    <span className="block text-[#F07C00] normal-case font-black">MEATiN</span>
+                    <span className="block text-[#fccd03] normal-case font-black">MEATiN</span>
                     <span className="block text-white">PURE QUALITY.</span>
                     <span className="block text-white">TRUSTED MEAT.</span>
                   </h1>
@@ -636,13 +637,13 @@ export default function HomePage() {
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   <p className="text-white/90 text-sm sm:text-base lg:text-base xl:text-xl font-medium leading-relaxed font-inter max-w-xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.7)]">
-                    South India&apos;s Multi Species <br/>
+                    South India&apos;s Multi Species <br />
                     Meat Processing Plant
                   </p>
                 </motion.div>
               </div>
 
-              {/* Right stamp overlay badge */}
+              {/* Right stamp overlay badge (Mobile/Tablet) */}
               <div className="lg:col-span-4 flex justify-start lg:justify-end">
                 <motion.div
                   initial={{ scale: 0.5, opacity: 0 }}

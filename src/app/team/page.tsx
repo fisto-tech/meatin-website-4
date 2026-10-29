@@ -364,9 +364,9 @@ export default function TeamPage() {
     <div className="w-full bg-[#FCFAF7] text-[#1E293B] overflow-x-clip font-manrope">
 
       {/* Hero Section */}
-      <section className="relative w-full pt-[68px] sm:pt-[72px] lg:pt-[78px] bg-white flex items-center overflow-hidden">
-        {/* Full Edge-to-Edge Hero Image Container - Slightly reduced height */}
-        <div className="relative w-full min-h-[360px] sm:min-h-[420px] lg:h-[460px] xl:h-[490px] flex items-center overflow-hidden">
+      <section className="relative w-full bg-white flex items-center overflow-hidden">
+        {/* Full Edge-to-Edge Hero Image Container */}
+        <div className="relative w-full min-h-[420px] sm:min-h-[480px] lg:h-[540px] xl:h-[600px] flex items-center overflow-hidden">
           {/* Edge to Edge Image */}
           <div className="absolute inset-0 w-full h-full z-0">
             <Image
@@ -380,7 +380,7 @@ export default function TeamPage() {
           </div>
 
           {/* Hero Content Overlay with Glassy Frosted Card */}
-          <div className="relative z-10 w-full max-w-[1400px] lg:max-w-[88vw] mx-auto px-4 sm:px-8 lg:px-12">
+          <div className="relative z-10 w-full max-w-[1400px] lg:max-w-[88vw] mx-auto px-4 sm:px-8 lg:px-12 pt-16 sm:pt-20 lg:pt-14">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}

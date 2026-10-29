@@ -523,23 +523,31 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
         {/* TOP MAIN CONTENT CONTAINER */}
         <div className="relative w-full max-w-[100vw] mx-auto px-4 lg:px-[3.5vw] flex-1 lg:flex-none flex flex-col justify-start z-10 pt-1 lg:pt-[0.5vw]">
 
-          {/* Top Left Slogan Badge: Goodness Begins at Our Farms + Two Leaves */}
-          <div className="hidden md:flex lg:flex flex-col items-start absolute top-[1.2rem] lg:top-[1.6rem] xl:top-[2rem] 2xl:top-[2.4rem] left-[2.5vw] md:left-[3.5vw] z-20 pointer-events-none scale-90 md:scale-100">
-            <div className="w-[13.5vw] max-w-[240px] h-auto">
-              <Image
-                src="/Product/details/section-images/goodness-begins-image.webp"
-                alt="Goodness Begins at Our Farms"
-                width={260}
-                height={160}
-                className="w-full h-auto object-contain drop-shadow-md"
-              />
+          {/* Top Left Farm Fresh Trust Badge (Clean Typography & Brand Accent) */}
+          <div className="hidden md:flex flex-col items-start absolute top-[1.2rem] lg:top-[1.6rem] xl:top-[2rem] 2xl:top-[2.4rem] left-[2.5vw] md:left-[3.5vw] z-20 pointer-events-none">
+            <div className="bg-white/85 backdrop-blur-md border border-white/80 rounded-2xl px-4 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex items-center gap-3 max-w-[230px]">
+              <div className="w-9 h-9 rounded-xl bg-[#064823]/10 border border-[#064823]/15 flex items-center justify-center shrink-0 text-[#064823]">
+                <ShieldCheck className="w-5 h-5 text-[#064823]" />
+              </div>
+              <div className="flex flex-col text-left">
+                <span className="text-[10px] font-bold text-[#8DC541] tracking-widest uppercase font-inter">
+                  100% FARM FRESH
+                </span>
+                <span className="text-xs lg:text-[13px] font-black text-[#064823] tracking-tight uppercase leading-tight font-anek">
+                  Ethically Sourced
+                </span>
+                <span className="text-[9.5px] font-semibold text-slate-500 leading-tight">
+                  Raised on natural diet
+                </span>
+              </div>
             </div>
-            <div className="w-[8.5vw] max-w-[150px] h-auto ml-[3vw]">
+            {/* Natural Leaf Accent Below Badge */}
+            <div className="w-[6vw] max-w-[100px] h-auto ml-[2vw] mt-1 opacity-90">
               <Image
                 src="/Product/details/section-images/two-leaves-images.webp"
-                alt="Leaves"
-                width={140}
-                height={100}
+                alt="Natural Leaves"
+                width={120}
+                height={80}
                 className="w-full h-auto object-contain"
               />
             </div>
