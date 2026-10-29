@@ -7,10 +7,10 @@ import Image from 'next/image';
 export const Footer: React.FC = () => {
   return (
     <footer className="relative w-full bg-[#FAF9F5] text-[#2D3748] font-inter border-t border-[#ECE8DC]">
-      
+
       {/* Upper Footer Area with Cream Background */}
       <div className="relative w-full overflow-hidden">
-        
+
         {/* Decorative Meat on Cutting Board (Bottom Left - Contained cleanly above the green bar) */}
         <div className="absolute left-0 bottom-0 z-10 pointer-events-none hidden md:block w-44 lg:w-56 xl:w-64">
           <Image
@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Decorative Leaf (Right Background - Scaled down) */}
-        <div className="absolute right-0 top-2 bottom-0 pointer-events-none hidden lg:block w-52 xl:w-64 z-0 opacity-80">
+        <div className="absolute right-0 top-2 bottom-0 pointer-events-none hidden lg:block w-52 xl:w-30 z-0 opacity-80">
           <Image
             src="/Footer/footer-right-transparent.webp"
             alt="Decorative Leaf"
@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
         {/* Main Content Container */}
         <div className="relative z-20 w-full max-w-[1700px] mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 pt-16 sm:pt-20 pb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-14 items-start">
-            
+
             {/* Column 1: Brand Info & Social Icons */}
             <div className="lg:col-span-4 space-y-5 md:pl-28 lg:pl-36 xl:pl-44">
               <Link href="/" className="inline-block transition-transform duration-300 hover:scale-105">
@@ -286,15 +286,15 @@ export const Footer: React.FC = () => {
 
       {/* Bottom Bar: Clean Deep Forest Green with Perfectly Centered Copyright and Right Ribbon */}
       <div className="relative w-full bg-[#0E4225] py-3.5 px-4 sm:px-8 lg:px-16 overflow-hidden">
-        
+
         {/* Right Decorative Ribbon & Leaf Accent */}
         <div className="absolute right-4 sm:right-10 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none opacity-80">
           <svg className="w-20 sm:w-28 h-5 text-[#8DC541]" viewBox="0 0 100 20" fill="none">
-            <path d="M0 15 Q25 0 50 12 T100 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            <path d="M10 18 Q35 5 60 14 T100 12" stroke="#D4A437" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+            <path d="M0 15 Q25 0 50 12 T100 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M10 18 Q35 5 60 14 T100 12" stroke="#D4A437" strokeWidth="1" strokeLinecap="round" opacity="0.6" />
           </svg>
           <svg className="w-4 h-4 text-[#8DC541] fill-current -rotate-12" viewBox="0 0 24 24">
-            <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-13 4s-4 7-4 7c3-1 7-1 12-6z"/>
+            <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A4.49 4.49 0 0 0 8 20C19 20 22 3 22 3c-1 2-8 2-13 4s-4 7-4 7c3-1 7-1 12-6z" />
           </svg>
         </div>
 
