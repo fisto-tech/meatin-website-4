@@ -55,9 +55,9 @@ export class LRUImageCache {
   }
 }
 
-// Global LRU cache initialization
+// Global LRU cache initialization (capacity 600 so all 563 hero frames stay cached in memory)
 if (typeof window !== 'undefined') {
-  (window as any).__HERO_FRAMES__ = (window as any).__HERO_FRAMES__ || new LRUImageCache(150);
+  (window as any).__HERO_FRAMES__ = (window as any).__HERO_FRAMES__ || new LRUImageCache(600);
 }
 
 export class AssetPreloadEngine {
@@ -102,13 +102,8 @@ export class AssetPreloadEngine {
       const isHeroFrame = lower.includes('/video-frames-opt/');
 
       if (isHeroFrame) {
-        const match = lower.match(/(\d+)\.jpg$/);
-        const frameNum = match ? parseInt(match[1], 10) : 999;
-        if (frameNum <= 15 || frameNum % 10 === 0 || frameNum === 563) {
-          t1.push(path); // Keyframe milestone -> Tier 1
-        } else {
-          t3.push(path); // Intermediate frame -> Tier 3
-        }
+        // Hero section frames have highest priority: all 563 frames load during preloader
+        t1.push(path);
       } else if (
         lower.includes('logo') ||
         lower.includes('preloader') ||

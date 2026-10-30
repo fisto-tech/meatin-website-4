@@ -231,10 +231,10 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm sm:text-base font-extrabold text-[#F7840F] tracking-wide mb-0.5">
+                  <h3 className="text-sm sm:text-base font-bold text-[#F7840F] tracking-wide mb-0.5">
                     {item.label}
                   </h3>
-                  <p className="text-xs sm:text-sm font-bold text-[#064823] transition-colors break-words leading-relaxed font-manrope">
+                  <p className="text-xs sm:text-sm font-medium text-[#064823] transition-colors break-words leading-relaxed font-manrope">
                     {item.value}
                   </p>
                 </div>
@@ -666,7 +666,7 @@ export default function ContactPage() {
                   >
                     <button
                       onClick={() => toggleFaq(idx)}
-                      className="w-full flex items-center justify-between text-left p-4 sm:p-5 font-bold text-sm sm:text-base text-[#064823] outline-none"
+                      className="w-full flex items-center justify-between text-left p-4 sm:p-5 font-semibold text-sm sm:text-base text-[#064823] outline-none"
                     >
                       <span>{faq.question}</span>
                       {isOpen ? (
@@ -684,7 +684,7 @@ export default function ContactPage() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.25 }}
                         >
-                          <div className="p-4 sm:p-5 pt-0 border-t border-slate-100/80 text-xs sm:text-sm text-slate-600 font-medium leading-relaxed">
+                          <div className="p-4 sm:p-5 pt-0 border-t border-slate-100/80 text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
                             {faq.answer}
                           </div>
                         </motion.div>

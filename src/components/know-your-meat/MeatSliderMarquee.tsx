@@ -56,32 +56,28 @@ export default function MeatSliderMarquee({
           Because they share the container, they translate together
           perfectly — no separate keyframes, no sync math. */}
       <div
-        className={`relative flex items-center w-full ${heightClass} ${animationDirectionClass} ${
-          pauseOnHover ? "group-hover:[animation-play-state:paused]" : ""
-        }`}
+        className={`relative flex items-center w-full ${heightClass} ${animationDirectionClass} ${pauseOnHover ? "group-hover:[animation-play-state:paused]" : ""
+          }`}
         style={{ animationDuration: `${speed}s` }}
       >
-        {/* ---------- BELT LAYER (absolute, behind) ---------- */}
-        <div className="absolute inset-0 flex items-stretch h-full pointer-events-none">
-          {/* Two full copies of the belt image, each rendered at its
-              natural aspect ratio (h-full, width auto). Translating
-              the parent by -50% loops seamlessly. */}
-          {[0, 1].map((copy) => (
+        {/* ---------- BELT LAYER (moving synchronously with chickens) ---------- */}
+        <div className="absolute inset-0 flex items-stretch h-full pointer-events-none min-w-full">
+          {/* Render enough copies of the conveyor belt image so it covers
+              the entire animated width (at least 6 copies = over 10,000px), 
+              guaranteeing the tray never cuts off or exposes the background. */}
+          {[0, 1, 2, 3, 4, 5].map((copy) => (
             <div
               key={`belt-copy-${copy}`}
               className="relative h-full shrink-0"
               style={{
-                // Each copy should be at least as wide as the container,
-                // so the strip always covers the viewport. Width:auto
-                // preserves the belt image's aspect ratio.
                 width: "auto",
-                aspectRatio: "auto",
+                aspectRatio: "2628 / 242",
               }}
             >
               <img
                 src={bgImage}
                 alt=""
-                className="h-full w-auto block pointer-events-none select-none"
+                className="h-full w-auto block pointer-events-none select-none max-w-none"
                 draggable={false}
               />
             </div>

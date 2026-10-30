@@ -57,8 +57,17 @@
   }
 }
 
-.animate-spin-slow {
-  animation: spinSlow 3s linear infinite;
+@keyframes spinReverse {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+.animate-spin-reverse {
+  animation: spinReverse 0.85s linear infinite;
 }
 
 /* Hide scrollbar for clean carousel UI */

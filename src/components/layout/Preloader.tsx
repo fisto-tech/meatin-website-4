@@ -67,10 +67,11 @@ export const Preloader: React.FC = () => {
     }
 
     let isFinished = false;
-    let assetsLoaded = false;
     let windowLoaded = typeof document !== 'undefined' && document.readyState === 'complete';
+    let heroFramesLoaded = false;
+    let otherAssetsLoaded = false;
     const startTime = Date.now();
-    const MIN_PRELOAD_MS = 3800; // Guarantee thorough 3.8s preload window for 100% asset caching
+    const MIN_PRELOAD_MS = 2500; // Minimum time for smooth branded mascot animation
 
     const finishLoading = () => {
       if (isFinished) return;
@@ -103,14 +104,15 @@ export const Preloader: React.FC = () => {
             window.dispatchEvent(new Event('resize'));
             window.dispatchEvent(new Event('scroll'));
           }
-          // Continue background preloading for 100% asset pool
+          // Continue background preloading for remaining subpage assets
           startBackgroundAssetPreload(PRELOAD_ASSETS);
         }, 500);
       }, 300);
     };
 
     const checkReady = () => {
-      if (assetsLoaded && windowLoaded) {
+      // ONLY release when all hero frames are confirmed loaded AND window is ready
+      if (heroFramesLoaded && otherAssetsLoaded && windowLoaded) {
         finishLoading();
       }
     };
@@ -124,29 +126,48 @@ export const Preloader: React.FC = () => {
     }
 
     if (typeof window !== 'undefined') {
-      // Concurrency 16 to quickly swallow and cache image/route assets
-      const engine = new AssetPreloadEngine(PRELOAD_ASSETS, {
-        concurrency: 16,
-        onProgress: (percent) => {
-          setProgress((prev) => Math.max(prev, percent));
-          if (percent >= 90) {
-            assetsLoaded = true;
-            checkReady();
-          }
+      // 1. Dedicated High-Concurrency Loader for all 563 Hero Frames
+      const TOTAL_HERO_FRAMES = 563;
+      let loadedHeroFrames = 0;
+      const heroFramePaths: string[] = [];
+      for (let i = 1; i <= TOTAL_HERO_FRAMES; i++) {
+        const frameStr = String(i).padStart(5, '0');
+        heroFramePaths.push(`/Home/Hero/video-frames-opt/${frameStr}.jpg`);
+      }
+
+      const heroEngine = new AssetPreloadEngine(heroFramePaths, {
+        concurrency: 24, // High-throughput parallel worker pool for frame sequence
+        onProgress: (percent, loaded, total) => {
+          loadedHeroFrames = loaded;
+          // Progress bar reflects real Hero frames completion (0 to 100%)
+          const heroPercent = Math.min(99, Math.floor((loaded / total) * 100));
+          setProgress((prev) => Math.max(prev, heroPercent));
         },
         onComplete: () => {
-          assetsLoaded = true;
-          finishLoading();
+          heroFramesLoaded = true;
+          checkReady();
         },
       });
 
-      engine.start();
+      heroEngine.start();
+
+      // 2. Main Site Critical Assets Preloader
+      const mainAssets = PRELOAD_ASSETS.filter((path) => !path.includes('/video-frames-opt/'));
+      const mainEngine = new AssetPreloadEngine(mainAssets, {
+        concurrency: 12,
+        onComplete: () => {
+          otherAssetsLoaded = true;
+          checkReady();
+        },
+      });
+
+      mainEngine.start();
     }
 
-    // Fixed safety ceiling around 4.8s
+    // Safety fallback in case of abnormal network drop
     const maxTimeout = setTimeout(() => {
       finishLoading();
-    }, 4800);
+    }, 15000);
 
     return () => {
       clearTimeout(maxTimeout);

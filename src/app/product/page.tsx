@@ -269,18 +269,46 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const registerUserInteraction = () => {
-    setIsAutoSwitchStopped(true);
+    // When a user clicks, clear any pending timeouts
     if (userInteractionTimeoutRef.current) {
       clearTimeout(userInteractionTimeoutRef.current);
     }
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+    // Pause auto-switching immediately upon click, and reset the 3-second cycle
+    setIsAutoSwitchStopped(true);
     userInteractionTimeoutRef.current = setTimeout(() => {
       setIsAutoSwitchStopped(false);
-      setIsOrbitHovered(false);
-    }, 5000);
+    }, 3000);
   };
 
-  // Auto-switch through the 4 tabs every 3.5s unless hovered or clicked
+  const handleCenterMouseEnter = () => {
+    setIsOrbitHovered(true);
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+  };
+
+  const handleCenterMouseLeave = () => {
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+    }
+    // On release of hover, wait 1.5 seconds then switch to the next tab and resume
+    resumeTimeoutRef.current = setTimeout(() => {
+      const tabs: ('raw' | 'packed' | 'platter' | '3d')[] = ['raw', 'packed', 'platter', '3d'];
+      setActiveViewTab((prev) => {
+        const idx = tabs.indexOf(prev);
+        return tabs[(idx + 1) % tabs.length];
+      });
+      setIsOrbitHovered(false);
+    }, 1500);
+  };
+
+  // Auto-switch through the 4 tabs every 3.0s unless hovered or clicked
   useEffect(() => {
     if (isAutoSwitchStopped || isOrbitHovered) return;
 
@@ -290,7 +318,7 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
         const idx = tabs.indexOf(prev);
         return tabs[(idx + 1) % tabs.length];
       });
-    }, 3500);
+    }, 3000);
 
     return () => clearInterval(timer);
   }, [isAutoSwitchStopped, isOrbitHovered]);
@@ -523,44 +551,24 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
         {/* TOP MAIN CONTENT CONTAINER */}
         <div className="relative w-full max-w-[100vw] mx-auto px-4 lg:px-[3.5vw] flex-1 lg:flex-none flex flex-col justify-start z-10 pt-1 lg:pt-[0.5vw]">
 
-          {/* Top Left Authentic Quality Badges (Official Vector SVG from brand design) */}
-          <div className="hidden md:flex items-start gap-4 absolute top-[1.2rem] lg:top-[1.6rem] xl:top-[2.2rem] left-[3vw] z-20 pointer-events-none select-none">
-            <div className="flex items-center gap-3 bg-white/70 backdrop-blur-md border border-white/60 rounded-2xl px-3.5 py-2.5 shadow-[0_8px_25px_rgba(0,0,0,0.06)]">
-              {/* Badge 1: Farm Fresh */}
-              <div className="w-[50px] lg:w-[3.8vw] max-w-[62px] h-auto flex flex-col items-center">
-                <Image
-                  src="/Product/details/section-images/farm-fresh.svg"
-                  alt="Farm Fresh"
-                  width={76}
-                  height={144}
-                  className="w-full h-auto object-contain drop-shadow-sm"
-                  priority
-                />
-              </div>
+          {/* Top Left: Back to All Products button & Decorative leaf */}
+          <div className="relative inline-flex flex-col md:absolute md:top-[1.2rem] lg:top-[1.6rem] xl:top-[2.2rem] md:left-[5.5vw] lg:left-[11vw] z-30 mb-2 md:mb-0">
+            <button
+              type="button"
+              onClick={() => router.push('/product')}
+              className="inline-flex items-center gap-2 bg-white/95 hover:bg-white text-[#064823] hover:text-[#d52828] border border-black/15 text-xs sm:text-[13px] lg:text-sm font-extrabold uppercase tracking-wider px-4 sm:px-5 py-2.5 rounded-full shadow-sm hover:shadow-md transition-all cursor-pointer group select-none whitespace-nowrap"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform text-[#d52828]" />
+              <span>Back to All Products</span>
+            </button>
 
-              {/* Divider */}
-              <div className="w-[1px] h-12 bg-black/10" />
-
-              {/* Badge 2: Quality Checked */}
-              <div className="w-[58px] lg:w-[4.4vw] max-w-[72px] h-auto flex flex-col items-center">
-                <Image
-                  src="/Product/details/section-images/quality-checked.svg"
-                  alt="Quality Checked"
-                  width={95}
-                  height={144}
-                  className="w-full h-auto object-contain drop-shadow-sm"
-                  priority
-                />
-              </div>
-            </div>
-
-            {/* Decorative leaf cluster */}
-            <div className="w-[5.5vw] max-w-[90px] h-auto opacity-80 mt-2">
+            {/* Decorative leaf cluster - centered horizontally under the button */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-7 sm:mt-9 lg:mt-11 w-[70px] sm:w-[85px] lg:w-[7.5vw] max-w-[125px] h-auto opacity-85 pointer-events-none select-none">
               <Image
                 src="/Product/details/section-images/two-leaves-images.webp"
                 alt="Natural Leaves"
-                width={120}
-                height={80}
+                width={160}
+                height={110}
                 className="w-full h-auto object-contain"
               />
             </div>
@@ -568,16 +576,6 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
 
           {/* Top Center Title Header */}
           <div className="text-center w-full max-w-[90%] sm:max-w-[80%] lg:max-w-[42vw] mx-auto z-20 pt-1 lg:pt-[0.2vw] mt-0 lg:mt-1 flex flex-col items-center">
-            {/* Back to All Products Button */}
-            <button
-              type="button"
-              onClick={() => router.push('/product')}
-              className="mb-2 sm:mb-2.5 inline-flex items-center gap-1.5 bg-white/95 hover:bg-white text-[#064823] hover:text-[#d52828] border border-black/15 text-[11px] sm:text-xs font-extrabold uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow-sm hover:shadow-md transition-all cursor-pointer group select-none"
-            >
-              <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform text-[#d52828]" />
-              <span>Back to All Products</span>
-            </button>
-
             <h4 className="text-xs sm:text-sm lg:text-[1vw] font-medium text-[#d52828] tracking-widest uppercase leading-none">
               FRESH PREMIUM CHICKEN
             </h4>
@@ -641,15 +639,19 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
           {/* CENTER PRODUCT ORBIT DISPLAY */}
           <div className="relative w-full max-w-[85vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[42vw] xl:max-w-[43vw] h-[220px] sm:h-[290px] md:h-[330px] lg:h-[25vw] xl:h-[26vw] mx-auto mt-0 sm:-mt-1 md:-mt-2 lg:-mt-[1.4vw] xl:-mt-[1.6vw] 2xl:-mt-[1.8vw] mb-1 sm:mb-2 flex items-center justify-center">
             {/* Main Center Selected Cut / Model Display */}
-            <div className="relative w-[265px] sm:w-[410px] md:w-[470px] lg:w-[36vw] xl:w-[33.5vw] h-[195px] sm:h-[290px] md:h-[330px] lg:h-[26vw] xl:h-[27vw] flex items-center justify-center z-10">
+            <div 
+              onMouseEnter={handleCenterMouseEnter}
+              onMouseLeave={handleCenterMouseLeave}
+              className="relative w-[265px] sm:w-[410px] md:w-[470px] lg:w-[36vw] xl:w-[33.5vw] h-[195px] sm:h-[290px] md:h-[330px] lg:h-[26vw] xl:h-[27vw] flex items-center justify-center z-10"
+            >
               <AnimatePresence mode="wait">
                 {activeViewTab === 'raw' && (
                   <motion.div
                     key={`raw-${selectedPartIdx}`}
-                    initial={{ opacity: 0, scale: 0.92 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.92 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.28, ease: 'easeInOut' }}
                     className="relative w-full h-full flex items-center justify-center"
                   >
                     {/* Static Wood Plate */}
@@ -676,10 +678,10 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
                 {activeViewTab === 'packed' && (
                   <motion.div
                     key={`packed-${selectedPartIdx}`}
-                    initial={{ opacity: 0, scale: 0.82, y: 32 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.88, y: -18 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.28, ease: 'easeInOut' }}
                     className="w-full h-full flex items-center justify-center"
                   >
                     <Image
@@ -696,10 +698,10 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
                 {activeViewTab === 'platter' && (
                   <motion.div
                     key={`platter-${selectedPartIdx}`}
-                    initial={{ opacity: 0, scale: 0.82, y: 32 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.88, y: -18 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.28, ease: 'easeInOut' }}
                     className="w-full h-full flex items-center justify-center"
                   >
                     <Image
@@ -716,10 +718,10 @@ function ProductDetailExperience({ initialPart }: { initialPart: string }) {
                 {activeViewTab === '3d' && (
                   <motion.div
                     key={`3d-${selectedPartIdx}`}
-                    initial={{ opacity: 0, scale: 0.88 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.88 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.28, ease: 'easeInOut' }}
                     className="w-[90%] h-[90%] relative flex items-center justify-center rounded-2xl overflow-hidden drop-shadow-2xl z-20"
                   >
                     <style>{`

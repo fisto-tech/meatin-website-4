@@ -85,30 +85,16 @@ export default function HomePage() {
 
 
 
-  const [isTruckMoving, setIsTruckMoving] = React.useState(false);
-
-  React.useEffect(() => {
-    let animId: number;
-    let prevVal: number | null = null;
-
-    const checkMovement = () => {
-      const rawVal = smoothTruckX.get();
-      const currentVal = typeof rawVal === "number" ? rawVal : parseFloat(rawVal) || 0;
-      if (prevVal !== null) {
-        // Truck is moving only if its interpolated x position is actively changing
-        const diff = Math.abs(currentVal - prevVal);
-        setIsTruckMoving(diff > 0.005);
-      }
-      prevVal = currentVal;
-      animId = requestAnimationFrame(checkMovement);
-    };
-
-    animId = requestAnimationFrame(checkMovement);
-
-    return () => {
-      cancelAnimationFrame(animId);
-    };
-  }, [smoothTruckX]);
+  // Calculate rotation directly from truck scroll progress so wheels rotate exactly as truck travels,
+  // and smoothly halt wherever they are without jumping or resetting to 0deg.
+  // 36vw to -26vw is 62vw total distance. A wheel with ~88px radius on an ~800px truck will rotate ~4 full turns (1440deg).
+  const rawWheelRotation = useTransform(section2ScrollProgress, [0, 1], [0, -1800]);
+  const wheelRotation = useSpring(rawWheelRotation, {
+    stiffness: 250,
+    damping: 30,
+    mass: 0.2,
+    restDelta: 0.001,
+  });
 
   const roadScrollX = useTransform(
     section2ScrollProgress,
@@ -225,7 +211,7 @@ export default function HomePage() {
       {/* 2. SECOND SECTION (MEATiN COLD CHAIN LOGISTICS TRUCK) */}
       <section
         ref={section2Ref}
-        className="relative w-full bg-[#EBF6E4] pt-12 pb-24 sm:pt-16 sm:pb-28 md:pt-20 md:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[300px] sm:min-h-[360px] md:min-h-[400px] lg:min-h-[440px]"
+        className="relative w-full bg-[#EBF6E4] pt-4 pb-14 sm:pt-6 sm:pb-16 md:pt-8 md:pb-20 overflow-hidden flex flex-col items-center justify-center min-h-[220px] sm:min-h-[260px] md:min-h-[300px] lg:min-h-[340px]"
       >
         {/* Even, slightly reduced doodle pattern layer */}
         <div
@@ -242,25 +228,70 @@ export default function HomePage() {
         <div className="w-full max-w-[95%] px-4 sm:px-8 relative z-10 flex justify-start items-center my-auto">
           <motion.div
             style={{ x: smoothTruckX, opacity: smoothTruckOpacity }}
-            className="relative w-full aspect-[4096/1339] max-w-[294px] sm:max-w-[357px] md:max-w-[420px] lg:max-w-[750px] min-[1375px]:max-w-[835px] min-[1531px]:max-w-[900px]"
+            className="relative w-full aspect-[1536/1024] max-w-[340px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[700px] min-[1375px]:max-w-[780px] min-[1531px]:max-w-[850px]"
           >
-            {/* Ground Soft Shadow */}
-            <div className="absolute -bottom-[4%] left-[4%] right-[4%] h-[12%] bg-black/20 blur-lg rounded-full z-0" />
-
-            {/* Cold Chain Logistics Truck SVG with Dynamic Wheel Speed */}
+            {/* Cold Chain Logistics Truck with Suspension Micro-Animation */}
             <motion.div
-              animate={{ y: [-1.5, 1.5, -1.5] }}
+              animate={{ y: [-2, 2, -2] }}
               transition={{
                 repeat: Infinity,
-                duration: 1.8,
+                duration: 2,
                 ease: "easeInOut",
               }}
-              className="absolute inset-0 w-full h-full z-20 pointer-events-none"
+              className="relative w-full h-full z-20 pointer-events-none"
             >
-              <TruckSvg isMoving={isTruckMoving} />
-            </motion.div>
+              {/* Truck Body Image (with cleanly masked wheel wells to avoid duplicate edges) */}
+              <Image
+                src="/Home/truck-section/truck-body-clean.png"
+                alt="MEATiN Cold Chain Logistics Truck"
+                fill
+                priority
+                className="object-contain select-none"
+                sizes="(max-width: 640px) 340px, (max-width: 1024px) 520px, 850px"
+              />
 
-            
+              {/* Front Rotating Wheel (Concentric center at 306.5px, 705.0px) */}
+              <div
+                className="absolute pointer-events-none z-30"
+                style={{
+                  left: "14.23%",
+                  top: "60.25%",
+                  width: "11.46%",
+                  height: "17.19%",
+                }}
+              >
+                <motion.img
+                  src="/Home/truck-section/wheel-front.png"
+                  alt="Front Wheel"
+                  className="w-full h-full object-contain"
+                  style={{
+                    rotate: wheelRotation,
+                    transformOrigin: "center center",
+                  }}
+                />
+              </div>
+
+              {/* Rear Rotating Wheel (Concentric center at 1250.0px, 705.5px) */}
+              <div
+                className="absolute pointer-events-none z-30"
+                style={{
+                  left: "75.65%",
+                  top: "60.30%",
+                  width: "11.46%",
+                  height: "17.19%",
+                }}
+              >
+                <motion.img
+                  src="/Home/truck-section/wheel-rear.png"
+                  alt="Rear Wheel"
+                  className="w-full h-full object-contain"
+                  style={{
+                    rotate: wheelRotation,
+                    transformOrigin: "center center",
+                  }}
+                />
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 
