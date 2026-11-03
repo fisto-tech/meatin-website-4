@@ -277,7 +277,7 @@ export default function AboutUsPage() {
               <span className="block text-[#1F5A3C] lg:text-white whitespace-nowrap text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[5rem] min-[1800px]:text-[6.4rem] font-extrabold tracking-tight">
                 WE ENGINEER
               </span>
-              <span className="block text-[#F07C00] whitespace-nowrap text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[5.8rem] xl:text-[7rem] min-[1800px]:text-[9rem] font-black tracking-tight leading-[0.7]">
+              <span className="block text-[#fccd03] whitespace-nowrap text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-[5.8rem] xl:text-[7rem] min-[1800px]:text-[9rem] font-black tracking-tight leading-[0.7]">
                 QUALITY
               </span>
               <span className="block text-[#1F5A3C] lg:text-white whitespace-nowrap text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[3.8rem] xl:text-[4.5rem] min-[1800px]:text-[5.8rem] font-extrabold tracking-tight">
@@ -389,8 +389,8 @@ export default function AboutUsPage() {
                 preload="metadata"
                 className="w-full h-full object-cover"
               >
-                <source src="/AboutUs/about-us-video.mp4" type="video/mp4" />
-                <source src="/AboutUs/about-us-video.webm" type="video/webm" />
+                <source src="/AboutUs/truck-video-about.mp4" type="video/mp4" />
+                <source src="/AboutUs/truck-video-about.webm" type="video/webm" />
                 Your browser does not support the video tag.
               </video>
 

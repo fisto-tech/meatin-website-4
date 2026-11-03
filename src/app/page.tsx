@@ -228,7 +228,7 @@ export default function HomePage() {
         <div className="w-full max-w-[95%] px-4 sm:px-8 relative z-10 flex justify-start items-center my-auto">
           <motion.div
             style={{ x: smoothTruckX, opacity: smoothTruckOpacity }}
-            className="relative w-full aspect-[1536/1024] max-w-[340px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[700px] min-[1375px]:max-w-[780px] min-[1531px]:max-w-[850px]"
+            className="relative w-full aspect-[1024/451] max-w-[340px] sm:max-w-[440px] md:max-w-[560px] lg:max-w-[760px] min-[1375px]:max-w-[860px] min-[1531px]:max-w-[940px]"
           >
             {/* Cold Chain Logistics Truck with Suspension Micro-Animation */}
             <motion.div
@@ -240,57 +240,57 @@ export default function HomePage() {
               }}
               className="relative w-full h-full z-20 pointer-events-none"
             >
-              {/* Truck Body Image (with cleanly masked wheel wells to avoid duplicate edges) */}
-              <Image
-                src="/Home/truck-section/truck-body-clean.png"
-                alt="MEATiN Cold Chain Logistics Truck"
-                fill
-                priority
-                className="object-contain select-none"
-                sizes="(max-width: 640px) 340px, (max-width: 1024px) 520px, 850px"
-              />
-
-              {/* Front Rotating Wheel (Concentric center at 306.5px, 705.0px) */}
+              {/* Front Rotating Wheel (Axle concentric at 183px, 381px in 1024x451, canvas 160x160) */}
               <div
-                className="absolute pointer-events-none z-30"
+                className="absolute pointer-events-none z-10"
                 style={{
-                  left: "14.23%",
-                  top: "60.25%",
-                  width: "11.46%",
-                  height: "17.19%",
+                  left: "10.0586%",
+                  top: "66.7406%",
+                  width: "15.625%",
+                  height: "35.4767%",
                 }}
               >
                 <motion.img
-                  src="/Home/truck-section/wheel-front.png"
+                  src="/Home/truck-section/wheel-front-new.png"
                   alt="Front Wheel"
                   className="w-full h-full object-contain"
                   style={{
                     rotate: wheelRotation,
-                    transformOrigin: "center center",
+                    transformOrigin: "50% 50%",
                   }}
                 />
               </div>
 
-              {/* Rear Rotating Wheel (Concentric center at 1250.0px, 705.5px) */}
+              {/* Rear Rotating Wheel (Axle concentric at 845.5px, 381px in 1024x451, canvas 160x160) */}
               <div
-                className="absolute pointer-events-none z-30"
+                className="absolute pointer-events-none z-10"
                 style={{
-                  left: "75.65%",
-                  top: "60.30%",
-                  width: "11.46%",
-                  height: "17.19%",
+                  left: "74.7559%",
+                  top: "66.7406%",
+                  width: "15.625%",
+                  height: "35.4767%",
                 }}
               >
                 <motion.img
-                  src="/Home/truck-section/wheel-rear.png"
+                  src="/Home/truck-section/wheel-rear-new.png"
                   alt="Rear Wheel"
                   className="w-full h-full object-contain"
                   style={{
                     rotate: wheelRotation,
-                    transformOrigin: "center center",
+                    transformOrigin: "50% 50%",
                   }}
                 />
               </div>
+
+              {/* Truck Body Image with clean wheel cutout overlaying wheel edges */}
+              <Image
+                src="/Home/truck-section/truck-body-new.png"
+                alt="MEATiN Cold Chain Logistics Truck"
+                fill
+                priority
+                className="object-contain select-none relative z-20"
+                sizes="(max-width: 640px) 340px, (max-width: 1024px) 560px, 940px"
+              />
             </motion.div>
           </motion.div>
         </div>

@@ -360,7 +360,7 @@ export default function FranchisePage() {
       {/* ============================================================ */}
       {/* SECTION 1: HERO & STORE SHOWCASE (EXACT MATCH TO DESIGN) */}
       {/* ============================================================ */}
-      <section className="relative w-full min-h-[auto] lg:min-h-[calc(100vh-50px)] pt-[88px] sm:pt-[94px] lg:pt-[108px] xl:pt-[115px] pb-4 sm:pb-6 lg:pb-8 px-2 sm:px-4 lg:px-6 xl:px-8 bg-slate-900 overflow-hidden select-none flex flex-col items-center justify-between">
+      <section className="relative w-full min-h-[auto] lg:min-h-screen pt-[88px] sm:pt-[94px] lg:pt-[5.6vw] pb-4 sm:pb-6 lg:pb-[1.2vw] px-2 sm:px-4 lg:px-[2.5vw] bg-slate-900 overflow-hidden select-none flex flex-col items-center justify-between">
         {/* Background Image: franchise-bg-new.webp */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <Image
@@ -372,11 +372,11 @@ export default function FranchisePage() {
           />
         </div>
 
-        <div className="w-full relative z-10 flex-1 flex flex-col items-center justify-between max-w-[1780px] mx-auto">
+        <div className="w-full relative z-10 flex-1 flex flex-col items-center justify-between max-w-[1780px] lg:max-w-none mx-auto">
           {/* Header Title Block (Matching Reference Image) */}
-          <div className="text-center shrink-0 mt-0.5 lg:mt-2 py-0 z-20 relative w-full">
+          <div className="text-center shrink-0 mt-0.5 lg:mt-[0.2vw] py-0 z-20 relative w-full">
             {/* Top Right Script Slogan: Good Meat Brighter Communities */}
-            <div className="absolute right-2 sm:right-6 lg:right-10 xl:right-14 2xl:right-16 top-0 hidden sm:block w-16 sm:w-20 md:w-28 lg:w-32 xl:w-36 h-auto">
+            <div className="absolute right-2 sm:right-6 lg:right-[1.5vw] top-0 hidden sm:block w-16 sm:w-20 md:w-28 lg:w-[8.2vw] h-auto">
               <Image
                 src="/Franchies/good-meat-brigher-communities.webp"
                 alt="Good Meat Brighter Communities"
@@ -392,35 +392,35 @@ export default function FranchisePage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, amount: 0.2 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="inline-flex items-center justify-center gap-2.5 text-[10px] sm:text-[11px] lg:text-[12px] xl:text-[13px] font-extrabold text-[#0B3C2A] tracking-[0.2em] uppercase font-manrope"
+              className="inline-flex items-center justify-center gap-2.5 lg:gap-[0.65vw] text-[10px] sm:text-[11px] lg:text-[0.75vw] font-extrabold text-[#0B3C2A] tracking-[0.2em] uppercase font-manrope"
             >
-              <span className="w-5 sm:w-8 h-[2px] bg-[#E58E26] rounded-full" />
+              <span className="w-5 sm:w-8 lg:w-[1.8vw] h-[2px] lg:h-[0.12vw] bg-[#E58E26] rounded-full" />
               GROWTH WITH
-              <span className="w-5 sm:w-8 h-[2px] bg-[#E58E26] rounded-full" />
+              <span className="w-5 sm:w-8 lg:w-[1.8vw] h-[2px] lg:h-[0.12vw] bg-[#E58E26] rounded-full" />
             </motion.div>
 
             {/* Main Brand Title: MEATiN */}
-            <h1 className="flex items-center justify-center mt-1 mb-0.5">
+            <h1 className="flex items-center justify-center mt-1 lg:mt-[0.15vw] mb-0.5 lg:mb-[0.1vw]">
               <Image
                 src="/Franchies/meatin-logo-text.webp"
                 alt="MEATiN"
                 width={300}
                 height={90}
-                className="w-auto h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 2xl:h-20 object-contain"
+                className="w-auto h-8 sm:h-10 md:h-12 lg:h-[3.6vw] object-contain"
                 priority
               />
             </h1>
 
             {/* Subtitle below MEATiN: A HEALTHIER TOMORROW TOGETHER */}
-            <p className="text-[#0B3C2A] font-black uppercase tracking-[0.22em] text-[9.5px] sm:text-[11px] lg:text-[11.5px] xl:text-[12.5px] mt-0.5 font-manrope drop-shadow-[0_1px_4px_rgba(255,255,255,0.8)]">
+            <p className="text-[#0B3C2A] font-black uppercase tracking-[0.22em] text-[9.5px] sm:text-[11px] lg:text-[0.68vw] mt-0.5 lg:mt-[0.1vw] font-manrope drop-shadow-[0_1px_4px_rgba(255,255,255,0.8)]">
               A HEALTHIER TOMORROW TOGETHER
             </p>
           </div>
 
           {/* Feature Showcase Container */}
-          <div className="relative w-full flex-1 max-w-[1720px] mx-auto flex items-end justify-center z-20 mb-1 lg:mb-0 mt-1 lg:mt-2">
+          <div className="relative w-full flex-1 max-w-[1720px] lg:max-w-none mx-auto flex items-end justify-center z-20 mb-1 lg:mb-[1.5vw] mt-0 sm:-mt-1 lg:-mt-[2.2vw]">
 
-            {/* Center Interactive Storefront Spotlight Showcase */}
+            {/* Center Interactive Storefront Spotlight Showcase & Direct Responsive Anchor */}
             <motion.div
               ref={heroImageContainerRef}
               onMouseEnter={handleHeroMouseEnter}
@@ -429,28 +429,30 @@ export default function FranchisePage() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative w-[95%] sm:w-[88%] md:w-[80%] lg:w-[48%] xl:w-[56%] 2xl:w-[60%] max-w-[500px] sm:max-w-[600px] lg:max-w-[680px] xl:max-w-[1040px] 2xl:max-w-[1220px] h-auto z-20 mx-auto cursor-default lg:cursor-crosshair rounded-2xl select-none flex items-end justify-center"
+              className="relative w-[95%] sm:w-[88%] md:w-[80%] lg:w-[60vw] lg:max-w-none h-auto z-20 mx-auto cursor-default lg:cursor-crosshair lg:rounded-[1vw] select-none flex items-end justify-center"
             >
-              {/* Mobile / Tablet View (Clean Display) */}
+              {/* Mobile / Tablet View (Grounded Storefront with Real Pavement & Curb) */}
               <div className="block lg:hidden relative w-full h-auto">
-                <Image
-                  src="/Franchies/hero-main-image.webp"
-                  alt="MEATiN Outlet Storefront"
-                  width={1120}
-                  height={880}
-                  priority
-                  className="w-full h-auto object-contain block drop-shadow-xl"
-                />
+                <div className="relative z-10 w-full h-auto drop-shadow-[0_12px_24px_rgba(0,0,0,0.18)]">
+                  <Image
+                    src="/Franchies/hero-storefront-grounded.webp"
+                    alt="MEATiN Outlet Storefront"
+                    width={1460}
+                    height={740}
+                    priority
+                    className="w-full h-auto object-contain block"
+                  />
+                </div>
               </div>
 
               {/* Desktop View (Interactive Spotlight Lens Cursor Reveal) */}
-              <div className="hidden lg:block relative w-full h-auto overflow-hidden rounded-2xl">
+              <div className="hidden lg:block relative w-full h-auto overflow-hidden lg:rounded-[1vw]">
                 {/* Layer 1 (Base): Store Exterior Facade */}
                 <Image
                   src="/Franchies/hero-overlay-image.webp"
                   alt="MEATiN Store Exterior Facade"
-                  width={1120}
-                  height={880}
+                  width={1360}
+                  height={646}
                   priority
                   className="w-full h-auto object-contain block pointer-events-none"
                 />
@@ -470,8 +472,8 @@ export default function FranchisePage() {
                   <Image
                     src="/Franchies/hero-main-image.webp"
                     alt="MEATiN Main Outlet Interior Storefront"
-                    width={920}
-                    height={720}
+                    width={1360}
+                    height={646}
                     priority
                     className="w-full h-auto object-contain block"
                   />
@@ -497,271 +499,271 @@ export default function FranchisePage() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 5 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 bg-slate-950/85 backdrop-blur-md text-white text-[11px] font-medium px-3.5 py-1.5 rounded-full flex items-center gap-2 border border-white/20 shadow-xl pointer-events-none"
+                      className="absolute bottom-3 lg:bottom-[0.8vw] left-1/2 -translate-x-1/2 z-30 bg-slate-950/85 backdrop-blur-md text-white text-[11px] lg:text-[0.68vw] font-medium px-3.5 lg:px-[0.9vw] py-1.5 lg:py-[0.35vw] rounded-full flex items-center gap-2 lg:gap-[0.45vw] border border-white/20 shadow-xl pointer-events-none"
                     >
-                      <Icon icon="ph:cursor-click-duotone" className="w-3.5 h-3.5 text-[#8DC541] animate-bounce" />
+                      <Icon icon="ph:cursor-click-duotone" className="w-3.5 h-3.5 lg:w-[0.9vw] lg:h-[0.9vw] text-[#8DC541] animate-bounce" />
                       <span className="tracking-wide">Hover over with cursor to reveal the store</span>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
+
+              {/* DESKTOP LEFT 3 FEATURE BADGES (Anchored strictly to Storefront Image Height) */}
+              <div className="absolute right-full top-0 bottom-0 mr-[-0.9vw] z-30 pointer-events-none hidden lg:flex flex-col justify-between py-[1.2vw] w-[18.5vw]">
+                {/* Feature 01: HYGIENIC PROCESSING */}
+                <div className="flex items-center w-full">
+                  <motion.div
+                    initial={{ opacity: 0, x: -25 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.03 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.4, delay: 0.15 }}
+                    className="flex items-center gap-2 lg:gap-[0.6vw] bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-[0.6vw] lg:rounded-[0.9vw] shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[13.8vw] shrink-0 pointer-events-auto"
+                  >
+                    <div className="w-8 h-8 lg:w-[2.5vw] lg:h-[2.5vw] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
+                      <Icon icon="ph:microscope-bold" className="w-4 h-4 lg:w-[1.3vw] lg:h-[1.3vw]" />
+                    </div>
+                    <div className="flex flex-col items-start text-left min-w-0">
+                      <span className="text-xs lg:text-[0.8vw] font-black text-[#D93829] font-manrope leading-none block">
+                        01
+                      </span>
+                      <div className="w-3.5 lg:w-[1.1vw] h-[2px] lg:h-[0.12vw] bg-[#D93829] my-0.5 lg:my-[0.1vw] rounded-full" />
+                      <h3 className="text-[10px] lg:text-[0.7vw] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
+                        HYGIENIC<br />PROCESSING
+                      </h3>
+                      <p className="text-[8.5px] lg:text-[0.58vw] text-slate-600 leading-tight mt-0.5 lg:mt-[0.08vw] font-medium font-manrope">
+                        Processed under strict hygiene standards.
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  {/* Dynamic Horizontal Connector Line */}
+                  <div className="flex-1 h-0 border-b-[2.5px] lg:border-b-[0.14vw] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-[0.35vw]" />
+
+                  {/* Red Dot on Store Wall */}
+                  <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
+                    <motion.div
+                      className="absolute w-5 h-5 lg:w-[1.1vw] lg:h-[1.1vw] rounded-full bg-[#D93829]"
+                      animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <div className="w-2.5 h-2.5 lg:w-[0.55vw] lg:h-[0.55vw] rounded-full bg-[#D93829] border-2 lg:border-[0.12vw] border-white shadow-md" />
+                  </div>
+                </div>
+
+                {/* Feature 02: PREMIUM QUALITY */}
+                <div className="flex items-center w-full">
+                  <motion.div
+                    initial={{ opacity: 0, x: -25 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.03 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.4, delay: 0.3 }}
+                    className="flex items-center gap-2 lg:gap-[0.6vw] bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-[0.6vw] lg:rounded-[0.9vw] shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[13.8vw] shrink-0 pointer-events-auto"
+                  >
+                    <div className="w-8 h-8 lg:w-[2.5vw] lg:h-[2.5vw] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
+                      <Icon icon="ph:shield-check-bold" className="w-4 h-4 lg:w-[1.3vw] lg:h-[1.3vw]" />
+                    </div>
+                    <div className="flex flex-col items-start text-left min-w-0">
+                      <span className="text-xs lg:text-[0.8vw] font-black text-[#D93829] font-manrope leading-none block">
+                        02
+                      </span>
+                      <div className="w-3.5 lg:w-[1.1vw] h-[2px] lg:h-[0.12vw] bg-[#D93829] my-0.5 lg:my-[0.1vw] rounded-full" />
+                      <h3 className="text-[10px] lg:text-[0.7vw] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
+                        PREMIUM<br />QUALITY
+                      </h3>
+                      <p className="text-[8.5px] lg:text-[0.58vw] text-slate-600 leading-tight mt-0.5 lg:mt-[0.08vw] font-medium font-manrope">
+                        Handpicked for superior freshness.
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  {/* Dynamic Horizontal Connector Line */}
+                  <div className="flex-1 h-0 border-b-[2.5px] lg:border-b-[0.14vw] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-[0.35vw]" />
+
+                  {/* Red Dot on Store Wall */}
+                  <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
+                    <motion.div
+                      className="absolute w-5 h-5 lg:w-[1.1vw] lg:h-[1.1vw] rounded-full bg-[#D93829]"
+                      animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
+                    />
+                    <div className="w-2.5 h-2.5 lg:w-[0.55vw] lg:h-[0.55vw] rounded-full bg-[#D93829] border-2 lg:border-[0.12vw] border-white shadow-md" />
+                  </div>
+                </div>
+
+                {/* Feature 03: FARM FRESH */}
+                <div className="flex items-center w-full">
+                  <motion.div
+                    initial={{ opacity: 0, x: -25 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.03 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.4, delay: 0.45 }}
+                    className="flex items-center gap-2 lg:gap-[0.6vw] bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-[0.6vw] lg:rounded-[0.9vw] shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[13.8vw] shrink-0 pointer-events-auto"
+                  >
+                    <div className="w-8 h-8 lg:w-[2.5vw] lg:h-[2.5vw] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
+                      <Icon icon="ph:house-line-bold" className="w-4 h-4 lg:w-[1.3vw] lg:h-[1.3vw]" />
+                    </div>
+                    <div className="flex flex-col items-start text-left min-w-0">
+                      <span className="text-xs lg:text-[0.8vw] font-black text-[#D93829] font-manrope leading-none block">
+                        03
+                      </span>
+                      <div className="w-3.5 lg:w-[1.1vw] h-[2px] lg:h-[0.12vw] bg-[#D93829] my-0.5 lg:my-[0.1vw] rounded-full" />
+                      <h3 className="text-[10px] lg:text-[0.7vw] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
+                        FARM FRESH
+                      </h3>
+                      <p className="text-[8.5px] lg:text-[0.58vw] text-slate-600 leading-tight mt-0.5 lg:mt-[0.08vw] font-medium font-manrope">
+                        Sourced from trusted local farms.
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  {/* Dynamic Horizontal Connector Line */}
+                  <div className="flex-1 h-0 border-b-[2.5px] lg:border-b-[0.14vw] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-[0.35vw]" />
+
+                  {/* Red Dot on Store Wall */}
+                  <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
+                    <motion.div
+                      className="absolute w-5 h-5 lg:w-[1.1vw] lg:h-[1.1vw] rounded-full bg-[#D93829]"
+                      animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+                    />
+                    <div className="w-2.5 h-2.5 lg:w-[0.55vw] lg:h-[0.55vw] rounded-full bg-[#D93829] border-2 lg:border-[0.12vw] border-white shadow-md" />
+                  </div>
+                </div>
+              </div>
+
+              {/* DESKTOP RIGHT 3 FEATURE BADGES (Anchored strictly to Storefront Image Height) */}
+              <div className="absolute left-full top-0 bottom-0 ml-[-0.9vw] z-30 pointer-events-none hidden lg:flex flex-col justify-between py-[1.2vw] w-[18.5vw]">
+                {/* Feature 04: NO ARTIFICIAL ADDITIVES */}
+                <div className="flex items-center justify-end w-full">
+                  {/* Red Dot on Store Wall */}
+                  <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
+                    <motion.div
+                      className="absolute w-5 h-5 lg:w-[1.1vw] lg:h-[1.1vw] rounded-full bg-[#D93829]"
+                      animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+                    />
+                    <div className="w-2.5 h-2.5 lg:w-[0.55vw] lg:h-[0.55vw] rounded-full bg-[#D93829] border-2 lg:border-[0.12vw] border-white shadow-md" />
+                  </div>
+
+                  {/* Dynamic Horizontal Connector Line */}
+                  <div className="flex-1 h-0 border-b-[2.5px] lg:border-b-[0.14vw] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-[0.35vw]" />
+
+                  <motion.div
+                    initial={{ opacity: 0, x: 25 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.03 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.4, delay: 0.2 }}
+                    className="flex items-center gap-2 lg:gap-[0.6vw] bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-[0.6vw] lg:rounded-[0.9vw] shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[13.8vw] shrink-0 pointer-events-auto"
+                  >
+                    <div className="w-8 h-8 lg:w-[2.5vw] lg:h-[2.5vw] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
+                      <Icon icon="ph:leaf-bold" className="w-4 h-4 lg:w-[1.3vw] lg:h-[1.3vw]" />
+                    </div>
+                    <div className="flex flex-col items-start text-left min-w-0">
+                      <span className="text-xs lg:text-[0.8vw] font-black text-[#D93829] font-manrope leading-none block">
+                        04
+                      </span>
+                      <div className="w-3.5 lg:w-[1.1vw] h-[2px] lg:h-[0.12vw] bg-[#D93829] my-0.5 lg:my-[0.1vw] rounded-full" />
+                      <h3 className="text-[10px] lg:text-[0.7vw] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
+                        NO ARTIFICIAL<br />ADDITIVES
+                      </h3>
+                      <p className="text-[8.5px] lg:text-[0.58vw] text-slate-600 leading-tight mt-0.5 lg:mt-[0.08vw] font-medium font-manrope">
+                        Free from artificial preservatives.
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Feature 05: FRESHNESS GUARANTEED */}
+                <div className="flex items-center justify-end w-full">
+                  {/* Red Dot on Store Wall */}
+                  <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
+                    <motion.div
+                      className="absolute w-5 h-5 lg:w-[1.1vw] lg:h-[1.1vw] rounded-full bg-[#D93829]"
+                      animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+                    />
+                    <div className="w-2.5 h-2.5 lg:w-[0.55vw] lg:h-[0.55vw] rounded-full bg-[#D93829] border-2 lg:border-[0.12vw] border-white shadow-md" />
+                  </div>
+
+                  {/* Dynamic Horizontal Connector Line */}
+                  <div className="flex-1 h-0 border-b-[2.5px] lg:border-b-[0.14vw] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-[0.35vw]" />
+
+                  <motion.div
+                    initial={{ opacity: 0, x: 25 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.03 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.4, delay: 0.35 }}
+                    className="flex items-center gap-2 lg:gap-[0.6vw] bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-[0.6vw] lg:rounded-[0.9vw] shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[13.8vw] shrink-0 pointer-events-auto"
+                  >
+                    <div className="w-8 h-8 lg:w-[2.5vw] lg:h-[2.5vw] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
+                      <Icon icon="ph:package-bold" className="w-4 h-4 lg:w-[1.3vw] lg:h-[1.3vw]" />
+                    </div>
+                    <div className="flex flex-col items-start text-left min-w-0">
+                      <span className="text-xs lg:text-[0.8vw] font-black text-[#D93829] font-manrope leading-none block">
+                        05
+                      </span>
+                      <div className="w-3.5 lg:w-[1.1vw] h-[2px] lg:h-[0.12vw] bg-[#D93829] my-0.5 lg:my-[0.1vw] rounded-full" />
+                      <h3 className="text-[10px] lg:text-[0.7vw] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
+                        FRESHNESS<br />GUARANTEED
+                      </h3>
+                      <p className="text-[8.5px] lg:text-[0.58vw] text-slate-600 leading-tight mt-0.5 lg:mt-[0.08vw] font-medium font-manrope">
+                        Packed to lock in freshness.
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Feature 06: FAST DELIVERY */}
+                <div className="flex items-center justify-end w-full">
+                  {/* Red Dot on Store Wall */}
+                  <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
+                    <motion.div
+                      className="absolute w-5 h-5 lg:w-[1.1vw] lg:h-[1.1vw] rounded-full bg-[#D93829]"
+                      animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.0 }}
+                    />
+                    <div className="w-2.5 h-2.5 lg:w-[0.55vw] lg:h-[0.55vw] rounded-full bg-[#D93829] border-2 lg:border-[0.12vw] border-white shadow-md" />
+                  </div>
+
+                  {/* Dynamic Horizontal Connector Line */}
+                  <div className="flex-1 h-0 border-b-[2.5px] lg:border-b-[0.14vw] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-[0.35vw]" />
+
+                  <motion.div
+                    initial={{ opacity: 0, x: 25 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.03 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.4, delay: 0.5 }}
+                    className="flex items-center gap-2 lg:gap-[0.6vw] bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-[0.6vw] lg:rounded-[0.9vw] shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[13.8vw] shrink-0 pointer-events-auto"
+                  >
+                    <div className="w-8 h-8 lg:w-[2.5vw] lg:h-[2.5vw] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
+                      <Icon icon="ph:truck-bold" className="w-4 h-4 lg:w-[1.3vw] lg:h-[1.3vw]" />
+                    </div>
+                    <div className="flex flex-col items-start text-left min-w-0">
+                      <span className="text-xs lg:text-[0.8vw] font-black text-[#D93829] font-manrope leading-none block">
+                        06
+                      </span>
+                      <div className="w-3.5 lg:w-[1.1vw] h-[2px] lg:h-[0.12vw] bg-[#D93829] my-0.5 lg:my-[0.1vw] rounded-full" />
+                      <h3 className="text-[10px] lg:text-[0.7vw] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
+                        FAST<br />DELIVERY
+                      </h3>
+                      <p className="text-[8.5px] lg:text-[0.58vw] text-slate-600 leading-tight mt-0.5 lg:mt-[0.08vw] font-medium font-manrope">
+                        Fresh meat delivered to your doorstep.
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
             </motion.div>
-
-            {/* LEFT 3 FEATURE BADGES WITH DYNAMIC CONNECTOR LINES (01, 02, 03) */}
-            <div className="absolute left-1 lg:left-3 xl:left-6 top-1 bottom-1 lg:top-2 lg:bottom-2 z-30 pointer-events-none hidden lg:flex flex-col justify-between w-[calc(50%-24.5%)] xl:w-[calc(50%-28.5%)] 2xl:w-[calc(50%-30.5%)]">
-              {/* Feature 01: HYGIENIC PROCESSING */}
-              <div className="flex items-center w-full">
-                <motion.div
-                  initial={{ opacity: 0, x: -25 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.03 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: 0.15 }}
-                  className="flex items-center gap-2 lg:gap-2.5 xl:gap-3 bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-2.5 xl:p-3.5 2xl:p-4 rounded-xl lg:rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[170px] xl:w-[230px] 2xl:w-[275px] shrink-0 pointer-events-auto"
-                >
-                  <div className="w-8 h-8 lg:w-8.5 lg:h-8.5 xl:w-11 xl:h-11 2xl:w-[50px] 2xl:h-[50px] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
-                    <Icon icon="ph:microscope-bold" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6.5 xl:h-6.5 2xl:w-7 2xl:h-7" />
-                  </div>
-                  <div className="flex flex-col items-start text-left min-w-0">
-                    <span className="text-xs lg:text-xs xl:text-sm 2xl:text-base font-black text-[#D93829] font-manrope leading-none block">
-                      01
-                    </span>
-                    <div className="w-3.5 lg:w-4 xl:w-5 h-[2px] bg-[#D93829] my-0.5 rounded-full" />
-                    <h3 className="text-[10px] lg:text-[10.5px] xl:text-[12.5px] 2xl:text-[14.5px] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
-                      HYGIENIC<br />PROCESSING
-                    </h3>
-                    <p className="text-[8.5px] lg:text-[9px] xl:text-[10px] 2xl:text-[11.5px] text-slate-600 leading-tight mt-0.5 font-medium font-manrope">
-                      Processed under strict hygiene standards.
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* Dynamic Horizontal Connector Line */}
-                <div className="flex-1 h-0 border-b-[2.5px] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-1.5" />
-
-                {/* Red Dot on Store Wall */}
-                <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
-                  <motion.div
-                    className="absolute w-5 h-5 rounded-full bg-[#D93829]"
-                    animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#D93829] border-2 border-white shadow-md" />
-                </div>
-              </div>
-
-              {/* Feature 02: PREMIUM QUALITY */}
-              <div className="flex items-center w-full">
-                <motion.div
-                  initial={{ opacity: 0, x: -25 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.03 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                  className="flex items-center gap-2 lg:gap-2.5 xl:gap-3 bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-2.5 xl:p-3.5 2xl:p-4 rounded-xl lg:rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[170px] xl:w-[230px] 2xl:w-[275px] shrink-0 pointer-events-auto"
-                >
-                  <div className="w-8 h-8 lg:w-8.5 lg:h-8.5 xl:w-11 xl:h-11 2xl:w-[50px] 2xl:h-[50px] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
-                    <Icon icon="ph:shield-check-bold" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6.5 xl:h-6.5 2xl:w-7 2xl:h-7" />
-                  </div>
-                  <div className="flex flex-col items-start text-left min-w-0">
-                    <span className="text-xs lg:text-xs xl:text-sm 2xl:text-base font-black text-[#D93829] font-manrope leading-none block">
-                      02
-                    </span>
-                    <div className="w-3.5 lg:w-4 xl:w-5 h-[2px] bg-[#D93829] my-0.5 rounded-full" />
-                    <h3 className="text-[10px] lg:text-[10.5px] xl:text-[12.5px] 2xl:text-[14.5px] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
-                      PREMIUM<br />QUALITY
-                    </h3>
-                    <p className="text-[8.5px] lg:text-[9px] xl:text-[10px] 2xl:text-[11.5px] text-slate-600 leading-tight mt-0.5 font-medium font-manrope">
-                      Handpicked for superior freshness.
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* Dynamic Horizontal Connector Line */}
-                <div className="flex-1 h-0 border-b-[2.5px] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-1.5" />
-
-                {/* Red Dot on Store Wall */}
-                <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
-                  <motion.div
-                    className="absolute w-5 h-5 rounded-full bg-[#D93829]"
-                    animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
-                  />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#D93829] border-2 border-white shadow-md" />
-                </div>
-              </div>
-
-              {/* Feature 03: FARM FRESH */}
-              <div className="flex items-center w-full">
-                <motion.div
-                  initial={{ opacity: 0, x: -25 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.03 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: 0.45 }}
-                  className="flex items-center gap-2 lg:gap-2.5 xl:gap-3 bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-2.5 xl:p-3.5 2xl:p-4 rounded-xl lg:rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[170px] xl:w-[230px] 2xl:w-[275px] shrink-0 pointer-events-auto"
-                >
-                  <div className="w-8 h-8 lg:w-8.5 lg:h-8.5 xl:w-11 xl:h-11 2xl:w-[50px] 2xl:h-[50px] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
-                    <Icon icon="ph:house-line-bold" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6.5 xl:h-6.5 2xl:w-7 2xl:h-7" />
-                  </div>
-                  <div className="flex flex-col items-start text-left min-w-0">
-                    <span className="text-xs lg:text-xs xl:text-sm 2xl:text-base font-black text-[#D93829] font-manrope leading-none block">
-                      03
-                    </span>
-                    <div className="w-3.5 lg:w-4 xl:w-5 h-[2px] bg-[#D93829] my-0.5 rounded-full" />
-                    <h3 className="text-[10px] lg:text-[10.5px] xl:text-[12.5px] 2xl:text-[14.5px] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
-                      FARM FRESH
-                    </h3>
-                    <p className="text-[8.5px] lg:text-[9px] xl:text-[10px] 2xl:text-[11.5px] text-slate-600 leading-tight mt-0.5 font-medium font-manrope">
-                      Sourced from trusted local farms.
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* Dynamic Horizontal Connector Line */}
-                <div className="flex-1 h-0 border-b-[2.5px] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-1.5" />
-
-                {/* Red Dot on Store Wall */}
-                <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
-                  <motion.div
-                    className="absolute w-5 h-5 rounded-full bg-[#D93829]"
-                    animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-                  />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#D93829] border-2 border-white shadow-md" />
-                </div>
-              </div>
-            </div>
-
-            {/* RIGHT 3 FEATURE BADGES WITH DYNAMIC CONNECTOR LINES (04, 05, 06) */}
-            <div className="absolute right-1 lg:right-3 xl:right-6 top-1 bottom-1 lg:top-2 lg:bottom-2 z-30 pointer-events-none hidden lg:flex flex-col justify-between w-[calc(50%-24.5%)] xl:w-[calc(50%-28.5%)] 2xl:w-[calc(50%-30.5%)]">
-              {/* Feature 04: NO ARTIFICIAL ADDITIVES */}
-              <div className="flex items-center justify-end w-full">
-                {/* Red Dot on Store Wall */}
-                <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
-                  <motion.div
-                    className="absolute w-5 h-5 rounded-full bg-[#D93829]"
-                    animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-                  />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#D93829] border-2 border-white shadow-md" />
-                </div>
-
-                {/* Dynamic Horizontal Connector Line */}
-                <div className="flex-1 h-0 border-b-[2.5px] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-1.5" />
-
-                <motion.div
-                  initial={{ opacity: 0, x: 25 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.03 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                  className="flex items-center gap-2 lg:gap-2.5 xl:gap-3 bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-2.5 xl:p-3.5 2xl:p-4 rounded-xl lg:rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[170px] xl:w-[230px] 2xl:w-[275px] shrink-0 pointer-events-auto"
-                >
-                  <div className="w-8 h-8 lg:w-8.5 lg:h-8.5 xl:w-11 xl:h-11 2xl:w-[50px] 2xl:h-[50px] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
-                    <Icon icon="ph:leaf-bold" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6.5 xl:h-6.5 2xl:w-7 2xl:h-7" />
-                  </div>
-                  <div className="flex flex-col items-start text-left min-w-0">
-                    <span className="text-xs lg:text-xs xl:text-sm 2xl:text-base font-black text-[#D93829] font-manrope leading-none block">
-                      04
-                    </span>
-                    <div className="w-3.5 lg:w-4 xl:w-5 h-[2px] bg-[#D93829] my-0.5 rounded-full" />
-                    <h3 className="text-[10px] lg:text-[10.5px] xl:text-[12.5px] 2xl:text-[14.5px] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
-                      NO ARTIFICIAL<br />ADDITIVES
-                    </h3>
-                    <p className="text-[8.5px] lg:text-[9px] xl:text-[10px] 2xl:text-[11.5px] text-slate-600 leading-tight mt-0.5 font-medium font-manrope">
-                      Free from artificial preservatives.
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Feature 05: FRESHNESS GUARANTEED */}
-              <div className="flex items-center justify-end w-full">
-                {/* Red Dot on Store Wall */}
-                <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
-                  <motion.div
-                    className="absolute w-5 h-5 rounded-full bg-[#D93829]"
-                    animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-                  />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#D93829] border-2 border-white shadow-md" />
-                </div>
-
-                {/* Dynamic Horizontal Connector Line */}
-                <div className="flex-1 h-0 border-b-[2.5px] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-1.5" />
-
-                <motion.div
-                  initial={{ opacity: 0, x: 25 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.03 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: 0.35 }}
-                  className="flex items-center gap-2 lg:gap-2.5 xl:gap-3 bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-2.5 xl:p-3.5 2xl:p-4 rounded-xl lg:rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[170px] xl:w-[230px] 2xl:w-[275px] shrink-0 pointer-events-auto"
-                >
-                  <div className="w-8 h-8 lg:w-8.5 lg:h-8.5 xl:w-11 xl:h-11 2xl:w-[50px] 2xl:h-[50px] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
-                    <Icon icon="ph:package-bold" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6.5 xl:h-6.5 2xl:w-7 2xl:h-7" />
-                  </div>
-                  <div className="flex flex-col items-start text-left min-w-0">
-                    <span className="text-xs lg:text-xs xl:text-sm 2xl:text-base font-black text-[#D93829] font-manrope leading-none block">
-                      05
-                    </span>
-                    <div className="w-3.5 lg:w-4 xl:w-5 h-[2px] bg-[#D93829] my-0.5 rounded-full" />
-                    <h3 className="text-[10px] lg:text-[10.5px] xl:text-[12.5px] 2xl:text-[14.5px] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
-                      FRESHNESS<br />GUARANTEED
-                    </h3>
-                    <p className="text-[8.5px] lg:text-[9px] xl:text-[10px] 2xl:text-[11.5px] text-slate-600 leading-tight mt-0.5 font-medium font-manrope">
-                      Packed to lock in freshness.
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Feature 06: FAST DELIVERY */}
-              <div className="flex items-center justify-end w-full">
-                {/* Red Dot on Store Wall */}
-                <div className="relative shrink-0 flex items-center justify-center pointer-events-auto">
-                  <motion.div
-                    className="absolute w-5 h-5 rounded-full bg-[#D93829]"
-                    animate={{ scale: [1, 1.9, 1], opacity: [0.4, 0, 0.4] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.0 }}
-                  />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#D93829] border-2 border-white shadow-md" />
-                </div>
-
-                {/* Dynamic Horizontal Connector Line */}
-                <div className="flex-1 h-0 border-b-[2.5px] border-dashed border-white opacity-95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.5)] my-auto mx-1 lg:mx-1.5" />
-
-                <motion.div
-                  initial={{ opacity: 0, x: 25 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  whileHover={{ scale: 1.03 }}
-                  viewport={{ once: false, amount: 0.2 }}
-                  transition={{ duration: 0.4, delay: 0.5 }}
-                  className="flex items-center gap-2 lg:gap-2.5 xl:gap-3 bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-2 lg:p-2.5 xl:p-3.5 2xl:p-4 rounded-xl lg:rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_22px_rgba(11,60,42,0.12)] transition-all duration-300 w-[165px] lg:w-[170px] xl:w-[230px] 2xl:w-[275px] shrink-0 pointer-events-auto"
-                >
-                  <div className="w-8 h-8 lg:w-8.5 lg:h-8.5 xl:w-11 xl:h-11 2xl:w-[50px] 2xl:h-[50px] rounded-full bg-[#0B3C2A] text-white flex items-center justify-center shrink-0 shadow-md">
-                    <Icon icon="ph:truck-bold" className="w-4 h-4 lg:w-5 lg:h-5 xl:w-6.5 xl:h-6.5 2xl:w-7 2xl:h-7" />
-                  </div>
-                  <div className="flex flex-col items-start text-left min-w-0">
-                    <span className="text-xs lg:text-xs xl:text-sm 2xl:text-base font-black text-[#D93829] font-manrope leading-none block">
-                      06
-                    </span>
-                    <div className="w-3.5 lg:w-4 xl:w-5 h-[2px] bg-[#D93829] my-0.5 rounded-full" />
-                    <h3 className="text-[10px] lg:text-[10.5px] xl:text-[12.5px] 2xl:text-[14.5px] font-extrabold text-[#0B3C2A] uppercase tracking-wider font-manrope leading-tight">
-                      FAST<br />DELIVERY
-                    </h3>
-                    <p className="text-[8.5px] lg:text-[9px] xl:text-[10px] 2xl:text-[11.5px] text-slate-600 leading-tight mt-0.5 font-medium font-manrope">
-                      Fresh meat delivered to your doorstep.
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
           </div>
 
           {/* Premium Glassmorphic Mobile Grid Layout for 6 Features (Below 1024px) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-4 mt-4 lg:hidden w-full px-1 sm:px-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3.5 mt-5 sm:mt-7 lg:hidden w-full px-1.5 sm:px-4 relative z-20">
             {
               [
                 {
@@ -807,7 +809,7 @@ export default function FranchisePage() {
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: i * 0.08 }}
-                  className="group relative bg-white/95 backdrop-blur-md border border-slate-200/90 p-3.5 sm:p-4 rounded-2xl shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_30px_rgba(6,72,35,0.12)] flex flex-col justify-between items-start gap-2.5 transition-all duration-300 overflow-hidden active:scale-[0.98]"
+                  className="group relative bg-[#FDFBF7]/95 hover:bg-white backdrop-blur-md border border-slate-200/90 p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-[0_4px_16px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_24px_rgba(11,60,42,0.12)] flex flex-col justify-between items-start gap-2 transition-all duration-300 overflow-hidden active:scale-[0.98]"
                 >
                   <div className="w-full flex items-center justify-between">
                     <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-[#064823]/10 border border-[#8DC541]/30 flex items-center justify-center text-[#064823] group-hover:bg-[#064823] group-hover:text-white transition-all duration-300 shadow-sm">
