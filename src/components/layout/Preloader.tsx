@@ -249,10 +249,10 @@ export const Preloader: React.FC = () => {
       <div className="glow-ambient absolute w-[450px] sm:w-[540px] h-[450px] sm:h-[540px] rounded-full bg-gradient-to-tr from-[#8DC541]/12 via-[#F7840F]/10 to-[#064823]/8 blur-[90px] pointer-events-none -z-10" />
 
       {/* Main Content Container */}
-      <div className="relative z-10 flex flex-col items-center max-w-sm sm:max-w-md w-full px-6 text-center">
+      <div className="relative z-10 flex flex-col items-center max-w-md sm:max-w-xl w-full px-6 text-center">
 
         {/* 1. Official MEATiN Brand Logo */}
-        <div className="relative w-44 sm:w-48 h-12 sm:h-14 mb-2">
+        <div className="relative w-56 sm:w-64 h-16 sm:h-20 mb-4 sm:mb-5">
           <Image
             src="/meatin-logo.webp"
             alt="MEATiN Logo"
@@ -263,12 +263,12 @@ export const Preloader: React.FC = () => {
         </div>
 
         {/* 2. Subtitle with Refined Gold Accents */}
-        <div className="flex items-center justify-center gap-2 mb-6 sm:mb-7">
-          <span className="h-[1px] w-6 bg-[#D4A437]/60" />
-          <span className="text-[9px] sm:text-[10px] font-extrabold tracking-[0.24em] text-[#064823]/75 uppercase font-manrope">
+        <div className="flex items-center justify-center gap-3 mb-6 sm:mb-8">
+          <span className="h-[1.5px] w-8 sm:w-10 bg-[#D4A437]/70" />
+          <span className="text-[11px] sm:text-[13px] font-black tracking-[0.26em] text-[#064823]/85 uppercase font-manrope">
             South India&apos;s Multi Species Meat Plant
           </span>
-          <span className="h-[1px] w-6 bg-[#D4A437]/60" />
+          <span className="h-[1.5px] w-8 sm:w-10 bg-[#D4A437]/70" />
         </div>
 
         {/* 3. Polished Mascot Stage with Circular Pedestal */}
@@ -290,43 +290,30 @@ export const Preloader: React.FC = () => {
         </div>
 
         {/* 4. Sleek Progress Bar & Dynamic Status */}
-        <div className="w-full max-w-[270px] sm:max-w-[300px] mt-6 sm:mt-7 flex flex-col items-center gap-2">
+        <div className="w-full max-w-[320px] sm:max-w-[380px] mt-6 sm:mt-7 flex flex-col items-center gap-2.5">
           
           {/* Progress Track */}
-          <div className="w-full h-2.5 bg-[#E7ECE3] rounded-full overflow-hidden p-[2px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.1)] border border-[#064823]/10 relative">
+          <div className="w-full h-3 bg-[#E7ECE3] rounded-full overflow-hidden p-[2px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.1)] border border-[#064823]/10 relative">
             <div
-              className="h-full bg-gradient-to-r from-[#8DC541] via-[#064823] to-[#F7840F] rounded-full transition-all duration-300 ease-out relative overflow-hidden"
+              className="h-full bg-[#064823] rounded-full transition-all duration-300 ease-out relative overflow-hidden"
               style={{ width: `${Math.max(8, progress)}%` }}
             >
               {/* Shimmer Light Beam */}
-              <div className="bar-shimmer absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+              <div className="bar-shimmer absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent" />
             </div>
           </div>
 
           {/* Status Label & Percentage Row */}
           <div className="flex items-center justify-between w-full px-1 text-left">
-            <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#8DC541] animate-pulse" />
-              <span className="text-[10px] sm:text-[11px] font-bold text-[#064823]/85 uppercase tracking-wider font-manrope">
-                {progress < 30
-                  ? 'Inspecting Quality'
-                  : progress < 65
-                  ? 'Cold-Chain Logistics'
-                  : progress < 92
-                  ? 'Seasoning Freshness'
-                  : 'Ready to Serve'}
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#8DC541] animate-pulse" />
+              <span className="text-[12px] sm:text-[13px] font-bold text-[#064823]/90 uppercase tracking-wider font-manrope">
+                Loading...
               </span>
             </div>
 
-            <span className="text-xs sm:text-sm font-black text-[#064823] font-barlow tabular-nums tracking-wider">
-              {progress}<span className="text-[10px] font-bold text-[#F7840F] ml-0.5">%</span>
-            </span>
-          </div>
-
-          {/* Freshness Assurance Pill */}
-          <div className="inline-flex items-center gap-1.5 mt-2 px-2.5 py-0.5 rounded-full bg-[#064823]/[0.05] border border-[#064823]/10">
-            <span className="text-[9px] font-semibold text-[#064823]/70 uppercase tracking-widest font-manrope">
-              100% Halal & Hygienic
+            <span className="text-sm sm:text-base font-black text-[#064823] font-barlow tabular-nums tracking-wider">
+              {progress}<span className="text-xs sm:text-sm font-bold text-[#F7840F] ml-0.5">%</span>
             </span>
           </div>
 
