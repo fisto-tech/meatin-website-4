@@ -393,7 +393,7 @@ export default function AboutUsPage() {
                 <source src="/AboutUs/truck-video-about.webm" type="video/webm" />
                 Your browser does not support the video tag.
               </video>
-
+ 
             </motion.div>
 
             {/* Right Side: Description (Right 50% Column with comfortable padding and safe top clearance for fixed navbar) */}
