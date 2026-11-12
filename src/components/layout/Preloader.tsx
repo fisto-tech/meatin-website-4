@@ -126,17 +126,17 @@ export const Preloader: React.FC = () => {
     }
 
     if (typeof window !== 'undefined') {
-      // 1. Dedicated High-Concurrency Loader for all 563 Hero Frames
-      const TOTAL_HERO_FRAMES = 563;
+      // 1. Dedicated High-Concurrency Loader for all 1271 Hero Frames
+      const TOTAL_HERO_FRAMES = 1271;
       let loadedHeroFrames = 0;
       const heroFramePaths: string[] = [];
       for (let i = 1; i <= TOTAL_HERO_FRAMES; i++) {
         const frameStr = String(i).padStart(5, '0');
-        heroFramePaths.push(`/Home/Hero/video-frames-opt/${frameStr}.jpg`);
+        heroFramePaths.push(`/Home/Hero/hero-video/${frameStr}.webp`);
       }
 
       const heroEngine = new AssetPreloadEngine(heroFramePaths, {
-        concurrency: 24, // High-throughput parallel worker pool for frame sequence
+        concurrency: 32, // High-throughput parallel worker pool for frame sequence
         onProgress: (percent, loaded, total) => {
           loadedHeroFrames = loaded;
           // Progress bar reflects real Hero frames completion (0 to 100%)
@@ -152,7 +152,7 @@ export const Preloader: React.FC = () => {
       heroEngine.start();
 
       // 2. Main Site Critical Assets Preloader
-      const mainAssets = PRELOAD_ASSETS.filter((path) => !path.includes('/video-frames-opt/'));
+      const mainAssets = PRELOAD_ASSETS.filter((path) => !path.includes('/hero-video/') && !path.includes('/video-frames-opt/'));
       const mainEngine = new AssetPreloadEngine(mainAssets, {
         concurrency: 12,
         onComplete: () => {

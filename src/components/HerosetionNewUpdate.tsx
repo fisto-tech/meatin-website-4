@@ -9,7 +9,7 @@ interface HeroSectionProps {
   totalFrames?: number;
 }
 
-export const HerosetionNewUpdate: React.FC<HeroSectionProps> = ({ totalFrames = 563 }) => {
+export const HerosetionNewUpdate: React.FC<HeroSectionProps> = ({ totalFrames = 1271 }) => {
   const heroRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -56,7 +56,7 @@ export const HerosetionNewUpdate: React.FC<HeroSectionProps> = ({ totalFrames = 
       let img = map.get(num);
       if (!img && typeof window !== 'undefined') {
         const frameStr = String(num).padStart(5, '0');
-        const src = `/Home/Hero/video-frames-opt/${frameStr}.jpg`;
+        const src = `/Home/Hero/hero-video/${frameStr}.webp`;
         const globalImg = getGlobalFrame(src);
         if (globalImg) {
           map.set(num, globalImg);
@@ -147,7 +147,7 @@ export const HerosetionNewUpdate: React.FC<HeroSectionProps> = ({ totalFrames = 
     if (map.has(frameNum)) return map.get(frameNum)!;
 
     const frameStr = String(frameNum).padStart(5, '0');
-    const src = `/Home/Hero/video-frames-opt/${frameStr}.jpg`;
+    const src = `/Home/Hero/hero-video/${frameStr}.webp`;
 
     if (typeof window !== 'undefined') {
       const store = (window as any).__HERO_FRAMES__;

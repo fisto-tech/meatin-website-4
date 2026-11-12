@@ -8,7 +8,7 @@ interface HeroSectionProps {
   totalFrames?: number;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ totalFrames = 563 }) => {
+export const HeroSection: React.FC<HeroSectionProps> = ({ totalFrames = 1271 }) => {
   const heroRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -16,9 +16,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ totalFrames = 563 }) =
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 20,
-    restDelta: 0.001,
+    stiffness: 60,
+    damping: 30,
+    restDelta: 0.0005,
   });
 
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
@@ -57,7 +57,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ totalFrames = 563 }) =
       let img = map.get(num);
       if (!img && typeof window !== 'undefined') {
         const frameStr = String(num).padStart(5, '0');
-        const src = `/Home/Hero/video-frames-opt/${frameStr}.jpg`;
+        const src = `/Home/Hero/hero-video/${frameStr}.webp`;
         const globalImg = getGlobalFrame(src);
         if (globalImg) {
           map.set(num, globalImg);
@@ -151,7 +151,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ totalFrames = 563 }) =
     if (map.has(frameNum)) return map.get(frameNum)!;
 
     const frameStr = String(frameNum).padStart(5, '0');
-    const src = `/Home/Hero/video-frames-opt/${frameStr}.jpg`;
+    const src = `/Home/Hero/hero-video/${frameStr}.webp`;
 
     if (typeof window !== 'undefined') {
       const store = (window as any).__HERO_FRAMES__;
@@ -313,7 +313,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ totalFrames = 563 }) =
   const heroContentY = useTransform(smoothProgress, [0.75, 0.88], [0, -30]);
 
   return (
-    <section ref={heroRef} className="relative w-full h-[380vh] bg-black">
+    <section ref={heroRef} className="relative w-full h-[850vh] bg-black">
       <div className="sticky top-0 left-0 w-full h-screen flex items-center bg-black overflow-hidden select-none">
         {/* Background Frame Sequence Canvas */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none w-full h-full">
