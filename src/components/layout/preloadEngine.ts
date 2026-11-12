@@ -55,7 +55,7 @@ export class LRUImageCache {
   }
 }
 
-// Global LRU cache initialization (capacity 1400 so all 1271 hero frames stay cached in memory)
+// Global LRU cache initialization (capacity 1400 so all 1225 hero frames stay cached in memory)
 if (typeof window !== 'undefined') {
   (window as any).__HERO_FRAMES__ = (window as any).__HERO_FRAMES__ || new LRUImageCache(1400);
 }
@@ -86,7 +86,7 @@ export class AssetPreloadEngine {
    * 4-Tier Priority Bucket Sort:
    * Tier 1: Mascot, Logo, Home Section essentials, Hero first 15 frames + 10th-milestone frames
    * Tier 2: Hero images & primary cards for About, Products, Recipes, Franchise, Team, Contact
-   * Tier 3: Intermediate Hero video frames (00001..01271)
+   * Tier 3: Intermediate Hero video frames (00001..01225)
    * Tier 4: Detailed subpage assets, dish cuts, country flags, doodles, etc.
    */
   private prioritySort(assets: string[]): string[] {
@@ -102,7 +102,7 @@ export class AssetPreloadEngine {
       const isHeroFrame = lower.includes('/hero-video/') || lower.includes('/video-frames-opt/');
 
       if (isHeroFrame) {
-        // Hero section frames have highest priority: all 1271 frames load during preloader
+        // Hero section frames have highest priority: all 1225 frames load during preloader
         t1.push(path);
       } else if (
         lower.includes('logo') ||

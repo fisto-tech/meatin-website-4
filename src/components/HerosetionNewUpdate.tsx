@@ -9,7 +9,7 @@ interface HeroSectionProps {
   totalFrames?: number;
 }
 
-export const HerosetionNewUpdate: React.FC<HeroSectionProps> = ({ totalFrames = 1271 }) => {
+export const HerosetionNewUpdate: React.FC<HeroSectionProps> = ({ totalFrames = 1225 }) => {
   const heroRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,

@@ -126,8 +126,8 @@ export const Preloader: React.FC = () => {
     }
 
     if (typeof window !== 'undefined') {
-      // 1. Dedicated High-Concurrency Loader for all 1271 Hero Frames
-      const TOTAL_HERO_FRAMES = 1271;
+      // 1. Dedicated High-Concurrency Loader for all 1225 Hero Frames
+      const TOTAL_HERO_FRAMES = 1225;
       let loadedHeroFrames = 0;
       const heroFramePaths: string[] = [];
       for (let i = 1; i <= TOTAL_HERO_FRAMES; i++) {

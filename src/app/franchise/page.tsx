@@ -837,7 +837,7 @@ export default function FranchisePage() {
       {/* ============================================================ */}
       {/* SECTION 2: INTERACTIVE PRESENCE MAP (EXACT MATCH TO DESIGN) */}
       {/* ============================================================ */}
-      <section className="relative w-full pt-8 sm:pt-12 lg:pt-14 xl:pt-16 pb-24 sm:pb-32 lg:pb-36 xl:pb-40 2xl:pb-44 flex flex-col justify-between bg-[#EFF2EB] overflow-x-clip select-none" >
+      <section className="relative w-full pt-8 sm:pt-12 lg:pt-14 xl:pt-16 pb-28 sm:pb-36 lg:pb-48 xl:pb-56 2xl:pb-64 flex flex-col justify-between bg-[#EFF2EB] overflow-x-clip select-none" >
             {/* background image layer absolute */}
             <div className="absolute top-0 left-0 w-full h-full z-10 opacity-[0.5]">
               <Image
@@ -910,7 +910,7 @@ export default function FranchisePage() {
               </div>
 
               {/* 3 Stat Cards arranged Side-by-Side in a Row (Mobile Compact Grid) */}
-              <div className="grid grid-cols-3 gap-1.5 sm:gap-3.5 max-w-lg w-full mb-4 sm:mb-6 lg:mb-8">
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-3.5 max-w-lg w-full mb-6 sm:mb-8 lg:mb-14 xl:mb-16">
                 {/* Card 1: Stores */}
                 <motion.div
                   initial={{ opacity: 0, y: 35, scale: 0.9 }}
@@ -1438,7 +1438,7 @@ export default function FranchisePage() {
             className="absolute bottom-0 sm:bottom-1 left-0 z-20 pointer-events-none w-[185px] min-[420px]:w-[220px] sm:w-[270px] md:w-[320px] lg:w-[305px] xl:w-[355px] 2xl:w-[425px] [@media(min-width:1800px)]:w-[475px]"
           >
             <Image
-              src="/Franchies/franchise-truck-image.webp"
+              src="/Franchies/franchise-truck-image-new.webp"
               alt="MEATiN Delivery Truck"
               width={520}
               height={350}
