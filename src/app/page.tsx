@@ -257,6 +257,9 @@ export default function HomePage() {
                   style={{
                     rotate: wheelRotation,
                     transformOrigin: "50% 50%",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
                   }}
                 />
               </div>
@@ -278,6 +281,9 @@ export default function HomePage() {
                   style={{
                     rotate: wheelRotation,
                     transformOrigin: "50% 50%",
+                    transform: "translateZ(0)",
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
                   }}
                 />
               </div>
