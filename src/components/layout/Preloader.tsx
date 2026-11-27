@@ -12,7 +12,6 @@ export const Preloader: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [serverError, setServerError] = useState(false);
 
   // Deep Pre-warm Next.js route bundles and HTML payloads on client router
   useEffect(() => {
@@ -49,6 +48,18 @@ export const Preloader: React.FC = () => {
 
   // Preloader lifecycle logic
   useEffect(() => {
+    if (typeof window !== 'undefined' && sessionStorage.getItem('meatin_preloaded') === 'true') {
+      setLoading(false);
+      document.body.classList.remove('preloader-active');
+      document.body.style.overflow = '';
+      if ((window as any).lenis) {
+        (window as any).lenis.resize();
+      }
+      // Warm remaining assets in background
+      startBackgroundAssetPreload(PRELOAD_ASSETS);
+      return;
+    }
+
     setMounted(true);
     if (typeof document !== 'undefined') {
       document.body.classList.add('preloader-active');
@@ -74,9 +85,29 @@ export const Preloader: React.FC = () => {
       isFinished = true;
       setProgress(100);
 
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('meatin_preloaded', 'true');
+      }
+
       setTimeout(() => {
-        setServerError(true);
-      }, 400);
+        setFadeOut(true);
+        setTimeout(() => {
+          if (typeof document !== 'undefined') {
+            document.body.classList.remove('preloader-active');
+            document.body.style.overflow = '';
+          }
+          setLoading(false);
+          if (typeof window !== 'undefined') {
+            if ((window as any).lenis) {
+              (window as any).lenis.resize();
+            }
+            window.dispatchEvent(new Event('resize'));
+            window.dispatchEvent(new Event('scroll'));
+          }
+          // Continue background preloading for remaining subpage assets
+          startBackgroundAssetPreload(PRELOAD_ASSETS);
+        }, 500);
+      }, 300);
     };
 
     const checkReady = () => {
@@ -258,56 +289,35 @@ export const Preloader: React.FC = () => {
           </div>
         </div>
 
-        {/* 4. Sleek Progress Bar & Dynamic Status OR Server Error */}
-        {!serverError ? (
-          <div className="w-full max-w-[320px] sm:max-w-[380px] mt-6 sm:mt-7 flex flex-col items-center gap-2.5">
-            
-            {/* Progress Track */}
-            <div className="w-full h-3 bg-[#E7ECE3] rounded-full overflow-hidden p-[2px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.1)] border border-[#064823]/10 relative">
-              <div
-                className="h-full bg-[#064823] rounded-full transition-all duration-300 ease-out relative overflow-hidden"
-                style={{ width: `${Math.max(8, progress)}%` }}
-              >
-                {/* Shimmer Light Beam */}
-                <div className="bar-shimmer absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </div>
+        {/* 4. Sleek Progress Bar & Dynamic Status */}
+        <div className="w-full max-w-[320px] sm:max-w-[380px] mt-6 sm:mt-7 flex flex-col items-center gap-2.5">
+          
+          {/* Progress Track */}
+          <div className="w-full h-3 bg-[#E7ECE3] rounded-full overflow-hidden p-[2px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.1)] border border-[#064823]/10 relative">
+            <div
+              className="h-full bg-[#064823] rounded-full transition-all duration-300 ease-out relative overflow-hidden"
+              style={{ width: `${Math.max(8, progress)}%` }}
+            >
+              {/* Shimmer Light Beam */}
+              <div className="bar-shimmer absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent" />
             </div>
+          </div>
 
-            {/* Status Label & Percentage Row */}
-            <div className="flex items-center justify-between w-full px-1 text-left">
-              <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#8DC541] animate-pulse" />
-                <span className="text-[12px] sm:text-[13px] font-bold text-[#064823]/90 uppercase tracking-wider font-manrope">
-                  Loading...
-                </span>
-              </div>
-
-              <span className="text-sm sm:text-base font-black text-[#064823] font-barlow tabular-nums tracking-wider">
-                {progress}<span className="text-xs sm:text-sm font-bold text-[#F7840F] ml-0.5">%</span>
+          {/* Status Label & Percentage Row */}
+          <div className="flex items-center justify-between w-full px-1 text-left">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-[#8DC541] animate-pulse" />
+              <span className="text-[12px] sm:text-[13px] font-bold text-[#064823]/90 uppercase tracking-wider font-manrope">
+                Loading...
               </span>
             </div>
 
+            <span className="text-sm sm:text-base font-black text-[#064823] font-barlow tabular-nums tracking-wider">
+              {progress}<span className="text-xs sm:text-sm font-bold text-[#F7840F] ml-0.5">%</span>
+            </span>
           </div>
-        ) : (
-          <div className="w-full max-w-[360px] sm:max-w-[420px] mt-6 sm:mt-7 flex flex-col items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#D9381E]/20 rounded-2xl p-6 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
-            <div className="flex items-center gap-2 text-[#D9381E]">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#D9381E]" />
-              <h2 className="text-base sm:text-lg font-black uppercase tracking-wider font-manrope">
-                Server Reaching Failed
-              </h2>
-            </div>
-            <p className="text-xs sm:text-sm font-medium text-[#1A1A1A]/75 leading-relaxed font-manrope">
-              An issue with the server, please try again after sometime.
-            </p>
-            <button
-              type="button"
-              onClick={() => window.location.reload()}
-              className="mt-2 px-6 py-2.5 rounded-full bg-[#064823] hover:bg-[#05381b] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors cursor-pointer"
-            >
-              Try Again
-            </button>
-          </div>
-        )}
+
+        </div>
 
       </div>
     </div>
